@@ -334,19 +334,11 @@
             background: #3b82f6;
         }
         
-        /* Demo section layout */
+        /* Demo section layout - centered widget */
         .demo-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 32px;
-            align-items: start;
-        }
-        
-        @media (max-width: 1024px) {
-            .demo-container {
-                grid-template-columns: 1fr;
-                gap: 24px;
-            }
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         /* Logo styling - reduced by 35% from 80px */
@@ -709,12 +701,7 @@
             </div>
 
             <div class="demo-container">
-                <!-- Demo Info Box with Image -->
-                <div class="demo-info-box">
-                    <img src="https://i.postimg.cc/Gm95xFHZ/Chat-GPT-Image-Jun-19-2025-02-45-50-PM.png" alt="Passwordless Authentication Demo">
-                  
-
-                <!-- Auth Widget -->
+                <!-- Auth Widget - Now Centered -->
                 <div class="jpegto-widget">
                     <!-- Widget Header with Tabs -->
                     <div class="widget-header">
