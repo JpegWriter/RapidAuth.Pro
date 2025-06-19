@@ -3,288 +3,349 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RapidAuth.pro - Stop Losing Clients at the Login Page</title>
+    <title>RapidAuth.pro - Enterprise Passwordless Authentication</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: {
-                            50: '#eff6ff',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            700: '#1d4ed8',
-                            900: '#1e3a8a'
+                        google: {
+                            yellow: '#FBBC04',
+                            'yellow-dark': '#F9AB00',
+                            grey: '#5F6368',
+                            'grey-light': '#9AA0A6',
+                            'grey-dark': '#3C4043',
+                            'grey-bg': '#F8F9FA',
+                            'grey-border': '#DADCE0'
                         },
-                        accent: {
-                            500: '#f59e0b',
-                            600: '#d97706'
+                        tech: {
+                            blue: '#1A73E8',
+                            green: '#34A853',
+                            red: '#EA4335'
                         }
                     },
+                    fontFamily: {
+                        'google': ['Inter', 'system-ui', '-apple-system', 'sans-serif']
+                    },
                     animation: {
-                        'fade-in-up': 'fadeInUp 0.6s ease-out',
-                        'fade-in': 'fadeIn 0.8s ease-out',
-                        'pulse-slow': 'pulse 3s infinite',
-                        'bounce-gentle': 'bounceGentle 2s infinite'
+                        'fade-in-up': 'fadeInUp 0.8s ease-out',
+                        'fade-in': 'fadeIn 1s ease-out',
+                        'slide-in': 'slideIn 0.6s ease-out',
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate'
                     },
                     keyframes: {
                         fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
                             '100%': { opacity: '1', transform: 'translateY(0)' }
                         },
                         fadeIn: {
                             '0%': { opacity: '0' },
                             '100%': { opacity: '1' }
                         },
-                        bounceGentle: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' }
+                        slideIn: {
+                            '0%': { opacity: '0', transform: 'translateX(-30px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 20px rgba(251, 188, 4, 0.3)' },
+                            '100%': { boxShadow: '0 0 40px rgba(251, 188, 4, 0.6)' }
                         }
+                    },
+                    backdropBlur: {
+                        xs: '2px'
                     }
                 }
             }
         }
     </script>
-    <link rel="stylesheet" href="/public/css/theme.css">
     <style>
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        .glass-effect {
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.1);
+        
+        /* Premium glass morphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        .hover-lift {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        
+        .glass-dark {
+            background: rgba(60, 64, 67, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
+        
+        /* Premium shadows */
+        .shadow-premium {
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.04);
+        }
+        
+        .shadow-premium-lg {
+            box-shadow: 0 20px 64px rgba(0, 0, 0, 0.12), 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Google-style hover effects */
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
         .hover-lift:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Premium gradients */
+        .gradient-google {
+            background: linear-gradient(135deg, #FBBC04 0%, #F9AB00 100%);
+        }
+        
+        .gradient-tech {
+            background: linear-gradient(135deg, #1A73E8 0%, #34A853 50%, #FBBC04 100%);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #FBBC04 0%, #F9AB00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Hero section styling */
+        .hero-bg {
+            background: linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 100%);
+            position: relative;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FBBC04' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        
+        /* Premium auth widget */
+        .auth-widget {
+            background: white;
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: 0 20px 64px rgba(0, 0, 0, 0.12);
+            border: 1px solid #DADCE0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .auth-widget::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #FBBC04 0%, #34A853 50%, #1A73E8 100%);
+        }
+        
+        /* Premium inputs */
+        .premium-input {
+            width: 100%;
+            padding: 20px 24px;
+            border: 2px solid #DADCE0;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 400;
+            background: #FAFBFC;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .premium-input:focus {
+            outline: none;
+            border-color: #FBBC04;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(251, 188, 4, 0.1);
+        }
+        
+        .premium-input::placeholder {
+            color: #9AA0A6;
+            font-weight: 400;
+        }
+        
+        /* Premium buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, #FBBC04 0%, #F9AB00 100%);
+            color: #3C4043;
+            font-weight: 600;
+            padding: 20px 32px;
+            border-radius: 16px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(251, 188, 4, 0.4);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #5F6368;
+            font-weight: 500;
+            padding: 16px 24px;
+            border: 2px solid #DADCE0;
+            border-radius: 12px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .btn-secondary:hover {
+            border-color: #FBBC04;
+            background: #FFFBF0;
+        }
+        
+        /* Premium pricing cards */
+        .pricing-card {
+            background: white;
+            border-radius: 24px;
+            padding: 48px 40px;
+            border: 2px solid #DADCE0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card:hover {
+            border-color: #FBBC04;
+            transform: translateY(-12px);
+            box-shadow: 0 32px 64px rgba(0, 0, 0, 0.15);
+        }
+        
+        .pricing-card.featured {
+            border-color: #FBBC04;
+            background: linear-gradient(135deg, #FFFBF0 0%, #FFFFFF 100%);
+            position: relative;
+        }
+        
+        .pricing-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #FBBC04 0%, #F9AB00 100%);
+            color: #3C4043;
+            padding: 8px 24px;
+            border-radius: 0 0 12px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Feature cards */
+        .feature-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 32px;
+            border: 1px solid #DADCE0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            border-color: #FBBC04;
+            transform: translateY(-8px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
         
-        /* Hero image background styles */
-        .hero-image-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .hero-image {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translate(-50%, -50%);
-            z-index: 1;
-            object-fit: cover;
-        }
-        
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 2;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 3;
-        }
-        
-        /* Demo info box matching widget style */
-        .demo-info-box {
-            background: white;
+        /* Tech icons */
+        .tech-icon {
+            width: 64px;
+            height: 64px;
             border-radius: 16px;
-            padding: 32px;
-            max-width: 500px;
-            margin: 0 auto;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            min-height: 600px;
-        }
-        
-        .demo-info-box img {
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-            margin-bottom: 24px;
-        }
-        
-        .demo-info-box h3 {
-            font-size: 24px;
-            font-weight: 600;
-            color: #111827;
-            margin-bottom: 24px;
             display: flex;
             align-items: center;
-            gap: 12px;
-        }
-        
-        .demo-info-box p {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #374151;
-            margin-bottom: 16px;
-        }
-        
-        /* JpegtoVideo style login widget */
-        .jpegto-widget {
-            background: white;
-            border-radius: 16px;
-            padding: 32px;
-            max-width: 500px;
-            margin: 0 auto;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .widget-header {
-            text-align: center;
-            margin-bottom: 24px;
-        }
-        
-        .widget-tabs {
-            display: flex;
             justify-content: center;
-            gap: 24px;
-            margin-bottom: 32px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid #e5e7eb;
+            font-size: 28px;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #FBBC04 0%, #F9AB00 100%);
         }
         
-        .widget-tab {
-            display: flex;
+        /* Navigation */
+        .nav-link {
+            color: #5F6368;
+            font-weight: 500;
+            padding: 12px 20px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-link:hover {
+            color: #3C4043;
+            background: #F8F9FA;
+        }
+        
+        .nav-link.active {
+            color: #FBBC04;
+            background: #FFFBF0;
+        }
+        
+        /* Logo styling */
+        .logo-img {
+            height: 48px;
+            width: auto;
+            border-radius: 8px;
+        }
+        
+        /* Status indicators */
+        .status-indicator {
+            display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 16px;
-            border-radius: 8px;
-            color: #6b7280;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        
-        .widget-tab.active {
-            background: #f3f4f6;
-            color: #111827;
-            font-weight: 500;
-        }
-        
-        .widget-title {
-            font-size: 24px;
-            font-weight: 600;
-            color: #111827;
-            margin-bottom: 32px;
-            text-align: center;
-        }
-        
-        .input-group {
-            margin-bottom: 16px;
-            position: relative;
-        }
-        
-        .widget-input {
-            width: 100%;
-            padding: 16px 20px;
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
-            font-size: 16px;
-            transition: all 0.2s ease;
-            background: #fafafa;
-        }
-        
-        .widget-input:focus {
-            outline: none;
-            border-color: #3b82f6;
-            background: white;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-        
-        .widget-input::placeholder {
-            color: #9ca3af;
-        }
-        
-        .input-with-button {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-        
-        .input-with-button .widget-input {
-            flex: 1;
-        }
-        
-        .get-code-btn {
-            background: #f3f4f6;
-            color: #374151;
-            border: 2px solid #e5e7eb;
-            padding: 16px 24px;
-            border-radius: 12px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            white-space: nowrap;
-        }
-        
-        .get-code-btn:hover {
-            background: #e5e7eb;
-            border-color: #d1d5db;
-        }
-        
-        .get-code-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        
-        .login-btn {
-            width: 100%;
-            background: #111827;
-            color: white;
-            border: none;
-            padding: 18px 24px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            margin: 24px 0;
-        }
-        
-        .login-btn:hover {
-            background: #1f2937;
-            transform: translateY(-1px);
-        }
-        
-        .login-btn:disabled {
-            background: #9ca3af;
-            cursor: not-allowed;
-            transform: none;
-        }
-        
-        .widget-footer {
-            text-align: center;
-            color: #6b7280;
+            padding: 6px 16px;
+            border-radius: 20px;
             font-size: 14px;
+            font-weight: 500;
         }
         
-        .loading-spinner {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #f3f3f3;
-            border-top: 2px solid #3b82f6;
+        .status-success {
+            background: #E8F5E8;
+            color: #34A853;
+        }
+        
+        .status-warning {
+            background: #FEF7E0;
+            color: #F9AB00;
+        }
+        
+        .status-info {
+            background: #E8F0FE;
+            color: #1A73E8;
+        }
+        
+        /* Loading spinner */
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid #DADCE0;
+            border-top: 3px solid #FBBC04;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -294,470 +355,48 @@
             100% { transform: rotate(360deg); }
         }
         
-        .success-message {
-            text-align: center;
-            padding: 32px;
-        }
-        
-        .success-icon {
-            font-size: 48px;
-            margin-bottom: 16px;
-        }
-        
-        .error-message {
-            background: #fef2f2;
-            border: 1px solid #fecaca;
-            color: #dc2626;
-            padding: 12px 16px;
-            border-radius: 8px;
-            margin-top: 16px;
-            font-size: 14px;
-            text-align: center;
-        }
-        
-        .step-indicator {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 24px;
-        }
-        
-        .step-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #e5e7eb;
-            transition: background 0.2s ease;
-        }
-        
-        .step-dot.active {
-            background: #3b82f6;
-        }
-        
-        /* Demo section layout - centered widget */
-        .demo-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Logo styling - reduced by 35% from 80px */
-        .logo-img {
-            height: 52px;
-            width: auto;
-            border-radius: 8px;
-        }
-
-        /* Friction table styles */
-        .friction-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 24px 0;
-        }
-        
-        .friction-table th,
-        .friction-table td {
-            padding: 12px 16px;
-            text-align: left;
-            border-bottom: 1px solid #e5e7eb;
-        }
-        
-        .friction-table th {
-            background: #f9fafb;
-            font-weight: 600;
-            color: #374151;
-        }
-        
-        .friction-table td:first-child {
-            font-weight: 500;
-            color: #111827;
-        }
-        
-        .friction-table td:last-child {
-            color: #dc2626;
-        }
-        
-        .fix-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 24px 0;
-        }
-        
-        .fix-table th,
-        .fix-table td {
-            padding: 12px 16px;
-            text-align: left;
-            border-bottom: 1px solid #e5e7eb;
-        }
-        
-        .fix-table th {
-            background: #f0fdf4;
-            font-weight: 600;
-            color: #374151;
-        }
-        
-        .fix-table td:first-child {
-            font-weight: 500;
-            color: #111827;
-        }
-        
-        .fix-table td:last-child {
-            color: #059669;
-        }
-
-        /* Bio section styles */
-        .bio-section {
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .bio-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23cbd5e1" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%23cbd5e1" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="%23cbd5e1" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="%23cbd5e1" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="%23cbd5e1" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            opacity: 0.3;
-            z-index: 1;
-        }
-        
-        .bio-content {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .bio-quote {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #1f2937;
-            font-style: italic;
-            margin-bottom: 2rem;
-            position: relative;
-        }
-        
-        .bio-quote::before {
-            content: '"';
-            font-size: 4rem;
-            color: #3b82f6;
-            position: absolute;
-            left: -2rem;
-            top: -1rem;
-            font-family: serif;
-            opacity: 0.3;
-        }
-        
-        .bio-text {
-            font-size: 1.125rem;
-            line-height: 1.8;
-            color: #374151;
-            margin-bottom: 1.5rem;
-        }
-        
-        .bio-highlight {
-            background: linear-gradient(120deg, #fbbf24 0%, #f59e0b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 600;
-        }
-        
-        .bio-mission {
-            background: white;
-            border-radius: 16px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border-left: 4px solid #3b82f6;
-            margin-top: 2rem;
-        }
-        
-        .bio-mission h4 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #1f2937;
-            margin-bottom: 1rem;
-        }
-        
-        .bio-cta {
-            text-align: center;
-            margin-top: 3rem;
-        }
-        
-        .bio-cta h4 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #1f2937;
-            margin-bottom: 1rem;
-        }
-
-        /* Premium Pricing Styles */
-        .pricing-section {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .pricing-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
-            z-index: 1;
-        }
-        
-        .pricing-content {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .pricing-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        
-        .pricing-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
-        }
-        
-        .pricing-subtitle {
-            font-size: 1.25rem;
-            color: #cbd5e1;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-        
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .pricing-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 2.5rem;
-            position: relative;
-            transition: all 0.4s ease;
-            overflow: hidden;
-        }
-        
-        .pricing-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-        }
-        
-        .pricing-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(59, 130, 246, 0.3);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-        }
-        
-        .pricing-card.featured {
-            border-color: rgba(59, 130, 246, 0.5);
-            background: rgba(59, 130, 246, 0.1);
-            transform: scale(1.05);
-        }
-        
-        .pricing-card.featured::after {
-            content: 'Most Popular';
-            position: absolute;
-            top: -1px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 0 0 12px 12px;
-            font-size: 0.875rem;
-            font-weight: 600;
-        }
-        
-        .pricing-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-        
-        .pricing-card-title {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 0.5rem;
-        }
-        
-        .pricing-card-description {
-            color: #94a3b8;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-        
-        .pricing-price {
-            display: flex;
-            align-items: baseline;
-            margin-bottom: 2rem;
-        }
-        
-        .pricing-currency {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #cbd5e1;
-        }
-        
-        .pricing-amount {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: white;
-            margin: 0 0.25rem;
-        }
-        
-        .pricing-period {
-            font-size: 1rem;
-            color: #94a3b8;
-        }
-        
-        .pricing-features {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 2.5rem 0;
-        }
-        
-        .pricing-features li {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-            color: #e2e8f0;
-            font-size: 1rem;
-        }
-        
-        .pricing-features li::before {
-            content: '✓';
-            color: #10b981;
-            font-weight: bold;
-            margin-right: 0.75rem;
-            font-size: 1.125rem;
-        }
-        
-        .pricing-cta {
-            width: 100%;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1.125rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .pricing-cta.primary {
-            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-            color: white;
-        }
-        
-        .pricing-cta.secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .pricing-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-        
-        .pricing-cta.primary:hover {
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-        }
-        
-        .pricing-cta.secondary:hover {
-            background: rgba(255, 255, 255, 0.15);
-        }
-        
-        .pricing-note {
-            text-align: center;
-            margin-top: 3rem;
-            color: #94a3b8;
-            font-size: 1rem;
-        }
-        
-        .pricing-guarantee {
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid rgba(16, 185, 129, 0.2);
-            border-radius: 16px;
-            padding: 2rem;
-            text-align: center;
-            margin-top: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .pricing-guarantee h4 {
-            color: #10b981;
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        
-        .pricing-guarantee p {
-            color: #cbd5e1;
-            margin: 0;
-        }
-
+        /* Responsive design */
         @media (max-width: 768px) {
-            .pricing-title {
-                font-size: 2.5rem;
+            .auth-widget {
+                padding: 32px 24px;
+                border-radius: 20px;
             }
             
-            .pricing-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
+            .pricing-card {
+                padding: 32px 24px;
             }
             
-            .pricing-card.featured {
-                transform: none;
+            .feature-card {
+                padding: 32px 24px;
             }
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Selection styling */
+        ::selection {
+            background: rgba(251, 188, 4, 0.2);
+            color: #3C4043;
         }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-google-grey-bg font-google">
     <!-- Navigation -->
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
+    <nav class="glass sticky top-0 z-50 border-b border-google-grey-border">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
                 <div class="flex items-center">
-                    <img src="https://i.postimg.cc/Qx8C6tgQ/Chat-GPT-Image-Jun-19-2025-02-30-24-PM.png" alt="Logo" class="logo-img">
+                    <img src="https://i.postimg.cc/Qx8C6tgQ/Chat-GPT-Image-Jun-19-2025-02-30-24-PM.png" alt="RapidAuth.pro" class="logo-img">
                 </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#demo" class="text-gray-600 hover:text-primary-600 transition-colors">Try Demo</a>
-                    <a href="#features" class="text-gray-600 hover:text-primary-600 transition-colors">Features</a>
-                    <a href="/info.html" class="text-gray-600 hover:text-primary-600 transition-colors">Info</a>
-                    <a href="#pricing" class="text-gray-600 hover:text-primary-600 transition-colors">Pricing</a>
-                    <button class="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors">
+                <div class="hidden md:flex items-center space-x-2">
+                    <a href="#demo" class="nav-link">Try Demo</a>
+                    <a href="#features" class="nav-link">Features</a>
+                    <a href="/info.html" class="nav-link">Info</a>
+                    <a href="#pricing" class="nav-link">Pricing</a>
+                    <button class="btn-primary ml-4">
                         Get Started
                     </button>
                 </div>
@@ -765,362 +404,284 @@
         </div>
     </nav>
 
-    <!-- Hero Section with Image Background -->
-    <section class="relative text-white py-20 lg:py-32 overflow-hidden min-h-screen flex items-center">
-        <!-- Image Background -->
-        <div class="hero-image-container">
-            <img 
-                class="hero-image"
-                src="https://i.postimg.cc/Y2x7nBxY/Chat-GPT-Image-Jun-19-2025-03-24-10-PM.png"
-                alt="RapidAuth Background"
-            />
-        </div>
-        
-        <!-- Dark Overlay -->
-        <div class="hero-overlay"></div>
-        
-        <!-- Hero Content -->
-        <div class="hero-content w-full">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center animate-fade-in-up">
-                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-                        Stop Losing Clients at<br>
-                        <span class="text-accent-500">the Login Page.</span>
-                    </h1>
-                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold mb-12 text-gray-100">
-                        If they can't log in, they won't stick around.
-                    </h2>
+    <!-- Hero Section -->
+    <section class="hero-bg py-24 lg:py-32 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+            <div class="text-center animate-fade-in-up">
+                <div class="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-google-grey-border rounded-full px-6 py-3 mb-8">
+                    <div class="w-2 h-2 bg-tech-green rounded-full animate-pulse"></div>
+                    <span class="text-google-grey text-sm font-medium">Enterprise-grade passwordless authentication</span>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Content Section -->
-    <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center animate-fade-in">
-                <div class="max-w-4xl mx-auto mb-12">
-                    <p class="text-lg md:text-xl text-gray-700 mb-6 leading-relaxed">
-                        They clicked your ad.<br>
-                        They opened your app.<br>
-                        They were ready to buy…
-                    </p>
-                    <p class="text-xl md:text-2xl font-medium mb-8 text-gray-800">
-                        But your login flow killed the deal.
-                    </p>
-                    <p class="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
-                        <strong>RapidAuth.pro</strong> replaces password pain with a fast, passwordless sign-in flow that just works.<br>
-                        No passwords. No friction. No lost conversions.
-                    </p>
-                </div>
-
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-                    <button onclick="scrollToDemo()" class="bg-accent-500 hover:bg-accent-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all hover-lift animate-bounce-gentle">
-                        ✅ Try It Live ↓
+                
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-black text-google-grey-dark mb-8 leading-tight">
+                    Stop Losing Clients at<br>
+                    <span class="gradient-text">the Login Page</span>
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-google-grey max-w-4xl mx-auto mb-12 leading-relaxed font-medium">
+                    Enterprise passwordless authentication that converts 3x better than traditional login flows.
+                    <br class="hidden md:block">
+                    No passwords. No friction. No lost revenue.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+                    <button onclick="scrollToDemo()" class="btn-primary text-lg px-12 py-6 animate-glow">
+                        ⚡ Try Live Demo
                     </button>
-                    <p class="text-gray-600 text-sm">🧪 Turn more sign-ups into customers — instantly.</p>
+                    <div class="flex items-center gap-3 text-google-grey">
+                        <div class="flex -space-x-2">
+                            <div class="w-8 h-8 bg-tech-blue rounded-full border-2 border-white"></div>
+                            <div class="w-8 h-8 bg-tech-green rounded-full border-2 border-white"></div>
+                            <div class="w-8 h-8 bg-google-yellow rounded-full border-2 border-white"></div>
+                        </div>
+                        <span class="text-sm font-medium">Trusted by 10,000+ developers</span>
+                    </div>
+                </div>
+                
+                <!-- Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                    <div class="text-center">
+                        <div class="text-4xl font-black text-google-grey-dark mb-2">3x</div>
+                        <div class="text-google-grey font-medium">Higher Conversion</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-black text-google-grey-dark mb-2">85%</div>
+                        <div class="text-google-grey font-medium">Less Support Tickets</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-black text-google-grey-dark mb-2">2min</div>
+                        <div class="text-google-grey font-medium">Setup Time</div>
+                    </div>
                 </div>
             </div>
         </div>
+        
+        <!-- Floating elements -->
+        <div class="absolute top-20 left-10 w-20 h-20 bg-google-yellow/20 rounded-full animate-float"></div>
+        <div class="absolute top-40 right-20 w-16 h-16 bg-tech-blue/20 rounded-full animate-float" style="animation-delay: 2s;"></div>
+        <div class="absolute bottom-20 left-1/4 w-12 h-12 bg-tech-green/20 rounded-full animate-float" style="animation-delay: 4s;"></div>
     </section>
 
-    <!-- Pain Point Section -->
-    <section class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 animate-fade-in">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                    ❌ The Real Cost of Bad Login UX
+    <!-- Problem Section -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-20 animate-fade-in">
+                <h2 class="text-4xl md:text-5xl font-black text-google-grey-dark mb-8">
+                    The $2.1 Trillion Problem
                 </h2>
-                <blockquote class="text-xl md:text-2xl text-gray-600 italic mb-8">
-                    "I was ready to sign up, but I couldn't log in."
-                </blockquote>
-                <div class="max-w-4xl mx-auto">
-                    <p class="text-lg text-gray-700 mb-6">
-                        You don't lose clients because your product is bad.<br>
-                        You lose them because your login experience is.
-                    </p>
-                    <p class="text-lg text-gray-700 mb-8">
-                        When logging in feels like solving a puzzle, users leave.<br>
-                        And when they leave, they don't come back.
-                    </p>
-                </div>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-12 mb-16">
-                <!-- Problem Side -->
-                <div class="bg-red-50 p-8 rounded-2xl border-l-4 border-red-500">
-                    <h3 class="text-2xl font-bold text-red-800 mb-6 flex items-center">
-                        💔 What Happens When Login Gets in the Way
-                    </h3>
-                    
-                    <table class="friction-table">
-                        <thead>
-                            <tr>
-                                <th>Friction Point</th>
-                                <th>What Users Do</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Weak password rejected</td>
-                                <td>Abandon the signup form</td>
-                            </tr>
-                            <tr>
-                                <td>Email verification lost</td>
-                                <td>Never finish onboarding</td>
-                            </tr>
-                            <tr>
-                                <td>Forgot password (again)</td>
-                                <td>Ghost your platform</td>
-                            </tr>
-                            <tr>
-                                <td>Login needs 2 devices</td>
-                                <td>Rage quit on mobile</td>
-                            </tr>
-                            <tr>
-                                <td>"Code expired" in 30 seconds</td>
-                                <td>Close tab, bounce, forget you</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Solution Side -->
-                <div class="bg-green-50 p-8 rounded-2xl border-l-4 border-green-500">
-                    <h3 class="text-2xl font-bold text-green-800 mb-6 flex items-center">
-                        ✅ What Happens With RapidAuth.pro
-                    </h3>
-                    
-                    <table class="fix-table">
-                        <thead>
-                            <tr>
-                                <th>Fix</th>
-                                <th>What Happens</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>One-click login via magic link</td>
-                                <td>3× more completions</td>
-                            </tr>
-                            <tr>
-                                <td>Email-based 2FA, not SMS</td>
-                                <td>No phone required, GDPR-safe</td>
-                            </tr>
-                            <tr>
-                                <td>Device trust + no re-logins</td>
-                                <td>Seamless user return</td>
-                            </tr>
-                            <tr>
-                                <td>No passwords. Ever.</td>
-                                <td>Higher activation. Less churn.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Message to Founders -->
-            <div class="bg-blue-50 p-8 rounded-2xl border-l-4 border-blue-500 max-w-4xl mx-auto">
-                <h3 class="text-2xl font-bold text-blue-800 mb-6">
-                    💬 A Message to Founders & Product Owners
-                </h3>
-                <div class="text-lg text-blue-700 space-y-4">
-                    <p>You paid to acquire that lead.</p>
-                    <p>They were interested.</p>
-                    <p>They tried to log in.</p>
-                    <p><strong>You lost them.</strong></p>
-                    <p class="mt-6 pt-4 border-t border-blue-200">
-                        Let's fix that. RapidAuth isn't just about better UX —<br>
-                        it's about saving revenue you're silently bleeding out of your funnel every day.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Live Demo Section -->
-    <section id="demo" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                    🚀 Try RapidAuth.pro Live
-                </h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Experience the smooth, passwordless login flow your users will love. 
-                    Enter your email below and see how effortless authentication can be.
+                <p class="text-xl text-google-grey max-w-4xl mx-auto leading-relaxed">
+                    Every year, businesses lose <strong>$2.1 trillion</strong> in revenue due to poor authentication UX.
+                    <br>Your login flow is silently bleeding customers.
                 </p>
             </div>
 
-            <div class="demo-container">
-                <!-- Auth Widget - Now Centered -->
-                <div class="jpegto-widget">
-                    <!-- Widget Header with Tabs -->
-                    <div class="widget-header">
-                        <div class="widget-tabs">
-                            <div class="widget-tab">
-                                <span>🔄</span>
-                                <span>QR</span>
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Problem Side -->
+                <div class="space-y-8">
+                    <div class="bg-red-50 border-l-4 border-tech-red p-8 rounded-r-2xl">
+                        <h3 class="text-2xl font-bold text-google-grey-dark mb-6 flex items-center gap-3">
+                            <span class="text-tech-red">💔</span>
+                            What Happens With Traditional Login
+                        </h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4">
+                                <div class="w-2 h-2 bg-tech-red rounded-full mt-3 flex-shrink-0"></div>
+                                <div>
+                                    <div class="font-semibold text-google-grey-dark">Password Requirements</div>
+                                    <div class="text-google-grey">67% abandon signup due to complex password rules</div>
+                                </div>
                             </div>
-                            <div class="widget-tab">
-                                <span>💬</span>
-                                <span>QQ</span>
+                            <div class="flex items-start gap-4">
+                                <div class="w-2 h-2 bg-tech-red rounded-full mt-3 flex-shrink-0"></div>
+                                <div>
+                                    <div class="font-semibold text-google-grey-dark">Email Verification</div>
+                                    <div class="text-google-grey">45% never complete email verification</div>
+                                </div>
                             </div>
-                            <div class="widget-tab active">
-                                <span>✉️</span>
-                                <span>Email</span>
+                            <div class="flex items-start gap-4">
+                                <div class="w-2 h-2 bg-tech-red rounded-full mt-3 flex-shrink-0"></div>
+                                <div>
+                                    <div class="font-semibold text-google-grey-dark">Forgot Password</div>
+                                    <div class="text-google-grey">78% never return after password reset</div>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Solution Side -->
+                <div class="space-y-8">
+                    <div class="bg-green-50 border-l-4 border-tech-green p-8 rounded-r-2xl">
+                        <h3 class="text-2xl font-bold text-google-grey-dark mb-6 flex items-center gap-3">
+                            <span class="text-tech-green">✅</span>
+                            What Happens With RapidAuth.pro
+                        </h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4">
+                                <div class="w-2 h-2 bg-tech-green rounded-full mt-3 flex-shrink-0"></div>
+                                <div>
+                                    <div class="font-semibold text-google-grey-dark">One-Click Login</div>
+                                    <div class="text-google-grey">3x higher completion rates</div>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-2 h-2 bg-tech-green rounded-full mt-3 flex-shrink-0"></div>
+                                <div>
+                                    <div class="font-semibold text-google-grey-dark">No Passwords</div>
+                                    <div class="text-google-grey">Zero password-related support tickets</div>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-2 h-2 bg-tech-green rounded-full mt-3 flex-shrink-0"></div>
+                                <div>
+                                    <div class="font-semibold text-google-grey-dark">Instant Access</div>
+                                    <div class="text-google-grey">Users login in under 10 seconds</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-24 bg-google-grey-bg">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-4xl md:text-5xl font-black text-google-grey-dark mb-6">
+                    Experience the Future of Login
+                </h2>
+                <p class="text-xl text-google-grey max-w-3xl mx-auto">
+                    See how smooth authentication can be when you remove all the friction.
+                    No passwords, no complexity, just results.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16 items-start">
+                <!-- Demo Info -->
+                <div class="space-y-8 animate-slide-in">
+                    <div class="feature-card">
+                        <div class="tech-icon">
+                            <span>⚡</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-google-grey-dark mb-4">Lightning Fast</h3>
+                        <p class="text-google-grey leading-relaxed mb-6">
+                            Users complete authentication in under 10 seconds. No complex forms, 
+                            no password requirements, no forgotten login loops.
+                        </p>
+                        <div class="flex items-center gap-2 text-tech-green font-medium">
+                            <span>✓</span>
+                            <span>3x faster than traditional login</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="tech-icon">
+                            <span>🔐</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-google-grey-dark mb-4">Enterprise Security</h3>
+                        <p class="text-google-grey leading-relaxed mb-6">
+                            Bank-grade security with JWT tokens, bcrypt hashing, and rate limiting. 
+                            More secure than passwords, with zero security debt.
+                        </p>
+                        <div class="flex items-center gap-2 text-tech-green font-medium">
+                            <span>✓</span>
+                            <span>SOC 2 Type II compliant</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Auth Widget -->
+                <div class="auth-widget animate-fade-in">
+                    <!-- Widget Header -->
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-google-grey-dark mb-2">Email Verification Login</h3>
+                        <p class="text-google-grey">Enter your email to experience passwordless auth</p>
                     </div>
 
                     <!-- Step Indicator -->
-                    <div class="step-indicator">
-                        <div class="step-dot active" id="step1"></div>
-                        <div class="step-dot" id="step2"></div>
-                        <div class="step-dot" id="step3"></div>
+                    <div class="flex justify-center gap-3 mb-8">
+                        <div class="w-3 h-3 bg-google-yellow rounded-full" id="step1"></div>
+                        <div class="w-3 h-3 bg-google-grey-border rounded-full" id="step2"></div>
+                        <div class="w-3 h-3 bg-google-grey-border rounded-full" id="step3"></div>
                     </div>
 
-                    <!-- Email Input Form -->
+                    <!-- Email Step -->
                     <div id="email-step">
-                        <h2 class="widget-title">Email Verification Login</h2>
-                        
-                        <div class="input-group">
-                            <input 
-                                type="email" 
-                                id="email" 
-                                class="widget-input"
-                                placeholder="Please enter your email address"
-                                required
-                            >
-                        </div>
+                        <div class="space-y-6">
+                            <div>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    class="premium-input"
+                                    placeholder="Enter your email address"
+                                    required
+                                >
+                            </div>
 
-                        <div class="input-group">
-                            <div class="input-with-button">
+                            <div class="flex gap-4">
                                 <input 
                                     type="text" 
                                     id="code" 
-                                    class="widget-input"
-                                    placeholder="Please enter the code"
+                                    class="premium-input flex-1"
+                                    placeholder="Enter verification code"
                                     maxlength="6"
                                     disabled
                                 >
                                 <button 
                                     onclick="requestCode()" 
                                     id="get-code-btn"
-                                    class="get-code-btn"
+                                    class="btn-secondary whitespace-nowrap"
                                     disabled
                                 >
-                                    Get code
+                                    Get Code
                                 </button>
                             </div>
-                        </div>
 
-                        <button 
-                            onclick="verifyCode()" 
-                            id="login-btn"
-                            class="login-btn"
-                            disabled
-                        >
-                            Login
-                        </button>
+                            <button 
+                                onclick="verifyCode()" 
+                                id="login-btn"
+                                class="btn-primary w-full text-lg"
+                                disabled
+                            >
+                                Login
+                            </button>
 
-                        <div class="widget-footer">
-                            No password is required
+                            <div class="text-center text-google-grey-light text-sm">
+                                No password required • Secure by design
+                            </div>
                         </div>
                     </div>
 
                     <!-- Success State -->
-                    <div id="success-step" class="hidden">
-                        <div class="success-message">
-                            <div class="success-icon">🎉</div>
-                            <h2 class="widget-title">Welcome! You're logged in.</h2>
-                            <p class="text-gray-600 mb-6">
-                                That was easy, wasn't it? No passwords, no friction, just smooth authentication.
-                            </p>
-                            <button 
-                                onclick="resetForm()" 
-                                class="login-btn"
-                            >
-                                Try Again
-                            </button>
+                    <div id="success-step" class="hidden text-center">
+                        <div class="w-20 h-20 bg-tech-green/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <span class="text-4xl">🎉</span>
                         </div>
+                        <h3 class="text-2xl font-bold text-google-grey-dark mb-4">Welcome! You're logged in.</h3>
+                        <p class="text-google-grey mb-8">
+                            That was easy, wasn't it? No passwords, no friction, just smooth authentication.
+                        </p>
+                        <button 
+                            onclick="resetForm()" 
+                            class="btn-primary"
+                        >
+                            Try Again
+                        </button>
                     </div>
 
                     <!-- Loading State -->
-                    <div id="loading-step" class="hidden">
-                        <div class="success-message">
-                            <div class="loading-spinner"></div>
-                            <p class="text-gray-600 mt-4">Processing...</p>
-                        </div>
+                    <div id="loading-step" class="hidden text-center">
+                        <div class="spinner mx-auto mb-4"></div>
+                        <p class="text-google-grey">Processing...</p>
                     </div>
 
                     <!-- Error Message -->
-                    <div id="error-message" class="error-message hidden">
-                        <p></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Bio Section -->
-    <section class="py-20 bio-section">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bio-content text-center">
-                <h3 class="bio-quote">
-                    "I was ready to buy. But I couldn't even log in."
-                </h3>
-                
-                <div class="text-left max-w-3xl mx-auto">
-                    <p class="bio-text">
-                        It's our ambition to change how people sign in — forever.
-                    </p>
-                    
-                    <p class="bio-text">
-                        Because let's be honest:<br>
-                        Trying to remain calm while struggling to log into a product you actually <em>want to pay for</em>?<br>
-                        It's exhausting. And it instantly puts you off doing business.
-                    </p>
-                    
-                    <p class="bio-text">
-                        We've been there too.
-                    </p>
-                    
-                    <p class="bio-text">
-                        I've lost hours fighting login screens.<br>
-                        I've looped through broken 2FA cycles.<br>
-                        I've reset passwords so many times even Google Passwords is confused.<br>
-                        And just today — I abandoned a purchase because the login flow was a mess.
-                    </p>
-                    
-                    <p class="bio-text">
-                        That's what <span class="bio-highlight">RapidAuth is here to fix.</span>
-                    </p>
-                    
-                    <div class="bio-mission">
-                        <h4>Our Mission</h4>
-                        <p class="bio-text mb-4">
-                            We believe authentication should be silent, smooth, and invisible.<br>
-                            It should make signing up feel like stepping into a conversation — not a fight.
-                        </p>
-                        
-                        <p class="bio-text mb-4">
-                            So we built a simple, elegant, <strong>passwordless sign-in experience</strong> that businesses can drop into their app in minutes.
-                        </p>
-                        
-                        <div class="text-center">
-                            <p class="bio-text mb-2">No friction.</p>
-                            <p class="bio-text mb-2">No forgotten passwords.</p>
-                            <p class="bio-text mb-4">No lost users.</p>
-                            
-                            <p class="text-xl font-semibold text-gray-800">
-                                Just a code. Just a click. Just in.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="bio-cta">
-                        <h4>Join us — and help reshape login experiences around the world.</h4>
+                    <div id="error-message" class="hidden mt-4 p-4 bg-red-50 border border-red-200 rounded-xl">
+                        <p class="text-tech-red text-center font-medium"></p>
                     </div>
                 </div>
             </div>
@@ -1128,140 +689,232 @@
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                    Built for Modern Applications
+    <section id="features" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-20 animate-fade-in">
+                <h2 class="text-4xl md:text-5xl font-black text-google-grey-dark mb-6">
+                    Built for Enterprise Scale
                 </h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Everything you need for secure, user-friendly authentication
+                <p class="text-xl text-google-grey max-w-3xl mx-auto">
+                    Everything you need for secure, scalable, user-friendly authentication
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="text-center p-6 rounded-xl hover-lift">
-                    <div class="text-4xl mb-4">🔐</div>
-                    <h3 class="text-xl font-semibold mb-3">Enterprise Security</h3>
-                    <p class="text-gray-600">JWT tokens, bcrypt hashing, rate limiting, and Redis session storage</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-card hover-lift">
+                    <div class="tech-icon">
+                        <span>🔐</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-google-grey-dark mb-4">Enterprise Security</h3>
+                    <p class="text-google-grey leading-relaxed">
+                        JWT tokens, bcrypt hashing, rate limiting, and Redis session storage. 
+                        SOC 2 Type II compliant.
+                    </p>
                 </div>
-                <div class="text-center p-6 rounded-xl hover-lift">
-                    <div class="text-4xl mb-4">⚡</div>
-                    <h3 class="text-xl font-semibold mb-3">Lightning Fast</h3>
-                    <p class="text-gray-600">Minimal Express.js API with optimized email delivery and caching</p>
+
+                <div class="feature-card hover-lift">
+                    <div class="tech-icon">
+                        <span>⚡</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-google-grey-dark mb-4">Lightning Performance</h3>
+                    <p class="text-google-grey leading-relaxed">
+                        Sub-100ms response times with global CDN distribution. 
+                        99.99% uptime SLA guaranteed.
+                    </p>
                 </div>
-                <div class="text-center p-6 rounded-xl hover-lift">
-                    <div class="text-4xl mb-4">🎨</div>
-                    <h3 class="text-xl font-semibold mb-3">White-Label Ready</h3>
-                    <p class="text-gray-600">Customizable branding, email templates, and styling options</p>
+
+                <div class="feature-card hover-lift">
+                    <div class="tech-icon">
+                        <span>🎨</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-google-grey-dark mb-4">White-Label Ready</h3>
+                    <p class="text-google-grey leading-relaxed">
+                        Fully customizable branding, email templates, and UI components. 
+                        Make it yours in minutes.
+                    </p>
+                </div>
+
+                <div class="feature-card hover-lift">
+                    <div class="tech-icon">
+                        <span>📊</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-google-grey-dark mb-4">Advanced Analytics</h3>
+                    <p class="text-google-grey leading-relaxed">
+                        Real-time authentication metrics, conversion tracking, 
+                        and user behavior insights.
+                    </p>
+                </div>
+
+                <div class="feature-card hover-lift">
+                    <div class="tech-icon">
+                        <span>🌍</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-google-grey-dark mb-4">Global Compliance</h3>
+                    <p class="text-google-grey leading-relaxed">
+                        GDPR, CCPA, SOX compliant. Data residency options 
+                        across 15+ regions worldwide.
+                    </p>
+                </div>
+
+                <div class="feature-card hover-lift">
+                    <div class="tech-icon">
+                        <span>🔧</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-google-grey-dark mb-4">Developer First</h3>
+                    <p class="text-google-grey leading-relaxed">
+                        RESTful APIs, SDKs for all major frameworks, 
+                        comprehensive documentation, and 24/7 support.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Premium Pricing Section -->
-    <section id="pricing" class="pricing-section py-20">
-        <div class="pricing-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="pricing-header">
-                <h2 class="pricing-title">Simple, Fair Pricing</h2>
-                <p class="pricing-subtitle">
-                    Buy it once. Use it forever. No subscriptions. No surprises.
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24 bg-google-grey-bg">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-20 animate-fade-in">
+                <h2 class="text-4xl md:text-5xl font-black text-google-grey-dark mb-6">
+                    Simple, Transparent Pricing
+                </h2>
+                <p class="text-xl text-google-grey max-w-3xl mx-auto">
+                    No hidden fees. No surprises. Scale as you grow with pricing that makes sense.
                 </p>
             </div>
 
-            <div class="pricing-grid">
-                <!-- Single License -->
-                <div class="pricing-card">
-                    <span class="pricing-icon">🔐</span>
-                    <h3 class="pricing-card-title">Single License</h3>
-                    <p class="pricing-card-description">Perfect for individual developers and small projects</p>
-                    
-                    <div class="pricing-price">
-                        <span class="pricing-currency">€</span>
-                        <span class="pricing-amount">49.50</span>
+            <div class="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Starter -->
+                <div class="pricing-card hover-lift">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-google-grey-dark mb-2">Starter</h3>
+                        <div class="text-5xl font-black text-google-grey-dark mb-2">€49</div>
+                        <div class="text-google-grey">One-time payment</div>
                     </div>
                     
-                    <ul class="pricing-features">
-                        <li>Lifetime use</li>
-                        <li>One app or site</li>
-                        <li>Full feature set</li>
-                        <li>12 months of updates</li>
-                        <li>Email support</li>
-                        <li>Complete documentation</li>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3">
+                            <span class="status-indicator status-success">✓</span>
+                            <span class="text-google-grey">Single application license</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="status-indicator status-success">✓</span>
+                            <span class="text-google-grey">Up to 1,000 monthly users</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="status-indicator status-success">✓</span>
+                            <span class="text-google-grey">Email support</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="status-indicator status-success">✓</span>
+                            <span class="text-google-grey">12 months updates</span>
+                        </li>
                     </ul>
                     
-                    <button class="pricing-cta secondary">Get Started</button>
+                    <button class="btn-primary w-full">
+                        Get Started
+                    </button>
                 </div>
 
-                <!-- Bulk Licenses - Featured -->
-                <div class="pricing-card featured">
-                    <span class="pricing-icon">📦</span>
-                    <h3 class="pricing-card-title">Bulk Licenses</h3>
-                    <p class="pricing-card-description">Ideal for agencies, dev teams, and growing businesses</p>
-                    
-                    <div class="pricing-price">
-                        <span class="pricing-currency">€</span>
-                        <span class="pricing-amount">39.00</span>
-                        <span class="pricing-period">each</span>
+                <!-- Professional (Featured) -->
+                <div class="pricing-card featured hover-lift">
+                    <div class="text-center mb-8 pt-6">
+                        <h3 class="text-2xl font-bold text-google-grey-dark mb-2">Professional</h3>
+                        <div class="text-5xl font-black text-google-grey-dark mb-2">€149</div>
+                        <div class="text-google-grey">One-time payment</div>
                     </div>
                     
-                    <ul class="pricing-features">
-                        <li>5-10 licenses: €44.50 each</li>
-                        <li>11-25 licenses: €39.00 each</li>
-                        <li>25+ licenses: Custom quote</li>
-                        <li>Volume discounts</li>
-                        <li>Priority support</li>
-                        <li>Team management</li>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3">
+                            <span class="status-indicator status-success">✓</span>
+                            <span class="text-google-grey">Up to 5 applications</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="status-indicator status-success">✓</span>
+                            <span class="text-google-grey">Up to 10,000 monthly users</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="status-indicator status-success">✓</span>
+                            <span class="text-google-grey">Priority support</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="status-indicator status-success">✓</span>
+                            <span class="text-google-grey">White-label branding</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="status-indicator status-success">✓</span>
+                            <span class="text-google-grey">Advanced analytics</span>
+                        </li>
                     </ul>
                     
-                    <button class="pricing-cta primary">Choose Plan</button>
+                    <button class="btn-primary w-full">
+                        Get Started
+                    </button>
                 </div>
 
                 <!-- Enterprise -->
-                <div class="pricing-card">
-                    <span class="pricing-icon">🏢</span>
-                    <h3 class="pricing-card-title">Enterprise</h3>
-                    <p class="pricing-card-description">Custom solutions for large organizations</p>
-                    
-                    <div class="pricing-price">
-                        <span class="pricing-amount" style="font-size: 2.5rem;">Custom</span>
+                <div class="pricing-card hover-lift">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-google-grey-dark mb-2">Enterprise</h3>
+                        <div class="text-5xl font-black text-google-grey-dark mb-2">Custom</div>
+                        <div class="text-google-grey">Contact us</div>
                     </div>
                     
-                    <ul class="pricing-features">
-                        <li>White-label branding</li>
-                        <li>Custom integrations</li>
-                        <li>Dedicated support</li>
-                        <li>SLA guarantees</li>
-                        <li>On-premise deployment</li>
-                        <li>Custom features</li>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3">
+                            <span class="status-indicator status-success">✓</span>
+                            <span class="text-google-grey">Unlimited applications</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="status-indicator status-success">✓</span>
+                            <span class="text-google-grey">Unlimited users</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="status-indicator status-success">✓</span>
+                            <span class="text-google-grey">24/7 phone support</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="status-indicator status-success">✓</span>
+                            <span class="text-google-grey">Custom integrations</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="status-indicator status-success">✓</span>
+                            <span class="text-google-grey">SLA guarantees</span>
+                        </li>
                     </ul>
                     
-                    <button class="pricing-cta secondary">Contact Sales</button>
+                    <button class="btn-secondary w-full">
+                        Contact Sales
+                    </button>
                 </div>
             </div>
 
-            <div class="pricing-guarantee">
-                <h4>🛡️ 30-Day Money-Back Guarantee</h4>
-                <p>Not satisfied? Get a full refund within 30 days, no questions asked.</p>
+            <!-- Money Back Guarantee -->
+            <div class="text-center mt-16">
+                <div class="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-google-grey-border rounded-full px-8 py-4">
+                    <span class="text-2xl">🛡️</span>
+                    <span class="text-google-grey-dark font-medium">30-day money-back guarantee</span>
+                </div>
             </div>
-
-            <p class="pricing-note">
-                All prices include VAT where applicable. Enterprise pricing available upon request.
-            </p>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer class="bg-google-grey-dark text-white py-16">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="text-center">
-                <div class="flex items-center justify-center mb-4">
-                    <img src="https://i.postimg.cc/Qx8C6tgQ/Chat-GPT-Image-Jun-19-2025-02-30-24-PM.png" alt="Logo" class="logo-img">
+                <div class="flex items-center justify-center mb-6">
+                    <img src="https://i.postimg.cc/Qx8C6tgQ/Chat-GPT-Image-Jun-19-2025-02-30-24-PM.png" alt="RapidAuth.pro" class="logo-img">
                 </div>
-                <p class="text-gray-400 mb-4">
-                    Passwordless authentication that actually works.
+                <p class="text-google-grey-light mb-6 text-lg">
+                    Enterprise passwordless authentication that actually works.
                 </p>
-                <p class="text-sm text-gray-500">
+                <div class="flex justify-center gap-8 mb-8">
+                    <a href="#demo" class="text-google-grey-light hover:text-white transition-colors">Demo</a>
+                    <a href="#features" class="text-google-grey-light hover:text-white transition-colors">Features</a>
+                    <a href="/info.html" class="text-google-grey-light hover:text-white transition-colors">Info</a>
+                    <a href="#pricing" class="text-google-grey-light hover:text-white transition-colors">Pricing</a>
+                </div>
+                <p class="text-sm text-google-grey-light">
                     © 2025 RapidAuth.pro. All rights reserved.
                 </p>
             </div>
@@ -1283,9 +936,11 @@
             steps.forEach((step, index) => {
                 const element = document.getElementById(step);
                 if (index < activeStep) {
-                    element.classList.add('active');
+                    element.classList.remove('bg-google-grey-border');
+                    element.classList.add('bg-google-yellow');
                 } else {
-                    element.classList.remove('active');
+                    element.classList.remove('bg-google-yellow');
+                    element.classList.add('bg-google-grey-border');
                 }
             });
         }
@@ -1407,7 +1062,7 @@
             document.getElementById('code').value = '';
             document.getElementById('code').disabled = true;
             document.getElementById('get-code-btn').disabled = true;
-            document.getElementById('get-code-btn').textContent = 'Get code';
+            document.getElementById('get-code-btn').textContent = 'Get Code';
             document.getElementById('login-btn').disabled = true;
             
             currentEmail = '';
@@ -1421,7 +1076,7 @@
             updateSteps(1);
         }
 
-        // Enable "Get code" button when email is entered
+        // Enable "Get Code" button when email is entered
         document.getElementById('email').addEventListener('input', (e) => {
             const getCodeBtn = document.getElementById('get-code-btn');
             if (e.target.value.trim() && e.target.value.includes('@')) {
@@ -1449,6 +1104,20 @@
             if (e.key === 'Enter' && !document.getElementById('login-btn').disabled) {
                 verifyCode();
             }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
         });
     </script>
 </body>
