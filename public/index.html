@@ -64,6 +64,44 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
         
+        /* Hero video background styles */
+        .hero-video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 2;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 3;
+        }
+        
         /* JpegtoVideo style login widget */
         .jpegto-widget {
             background: white;
@@ -279,26 +317,50 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="gradient-bg text-white py-20 lg:py-32 relative overflow-hidden">
-        <div class="absolute inset-0 bg-black opacity-20"></div>
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center animate-fade-in-up">
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-                    Say Goodbye to<br>
-                    <span class="text-accent-500">Forgotten Passwords.</span>
-                </h1>
-                <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold mb-8 text-gray-100">
-                    Say Hello to Clients Who Actually Log In.
-                </h2>
-                
+    <!-- Hero Section with Video Background -->
+    <section class="relative text-white py-20 lg:py-32 overflow-hidden min-h-screen flex items-center">
+        <!-- Video Background -->
+        <div class="hero-video-container">
+            <iframe 
+                class="hero-video"
+                src="https://www.youtube.com/embed/AiwYwv_f3_o?autoplay=1&mute=1&loop=1&playlist=AiwYwv_f3_o&controls=1&modestbranding=1&rel=0&showinfo=0"
+                title="RapidAuth Background Video"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>
+        </div>
+        
+        <!-- Dark Overlay -->
+        <div class="hero-overlay"></div>
+        
+        <!-- Hero Content -->
+        <div class="hero-content w-full">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center animate-fade-in-up">
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+                        Say Goodbye to<br>
+                        <span class="text-accent-500">Forgotten Passwords.</span>
+                    </h1>
+                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold mb-12 text-gray-100">
+                        Say Hello to Clients Who Actually Log In.
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section (moved from hero) -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center animate-fade-in">
                 <div class="max-w-4xl mx-auto mb-12">
-                    <p class="text-lg md:text-xl text-gray-200 mb-6 leading-relaxed">
+                    <p class="text-lg md:text-xl text-gray-700 mb-6 leading-relaxed">
                         They clicked your email.<br>
                         They opened your app.<br>
                         And then... they hit a login wall.
                     </p>
-                    <p class="text-xl md:text-2xl font-medium mb-8">
+                    <p class="text-xl md:text-2xl font-medium mb-8 text-gray-800">
                         Don't lose users to friction.<br>
                         <strong>RapidAuth.pro</strong> makes onboarding effortless with passwordless, 2FA-secure sign-in flows that work — every time.
                     </p>
@@ -308,14 +370,14 @@
                     <button onclick="scrollToDemo()" class="bg-accent-500 hover:bg-accent-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all hover-lift animate-bounce-gentle">
                         ✅ Try It Live ↓
                     </button>
-                    <p class="text-gray-300 text-sm">🧪 No passwords. No delays. No drop-off.</p>
+                    <p class="text-gray-600 text-sm">🧪 No passwords. No delays. No drop-off.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Pain Point Section -->
-    <section class="py-20 bg-white">
+    <section class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 animate-fade-in">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
@@ -425,7 +487,7 @@
     </section>
 
     <!-- Live Demo Section -->
-    <section id="demo" class="py-20 bg-gray-100">
+    <section id="demo" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -546,7 +608,7 @@
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="py-20 bg-white">
+    <section id="features" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
