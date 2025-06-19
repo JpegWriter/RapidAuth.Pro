@@ -491,6 +491,257 @@
             color: #1f2937;
             margin-bottom: 1rem;
         }
+
+        /* Premium Pricing Styles */
+        .pricing-section {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+            z-index: 1;
+        }
+        
+        .pricing-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .pricing-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .pricing-subtitle {
+            font-size: 1.25rem;
+            color: #cbd5e1;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 2.5rem;
+            position: relative;
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+        
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+        
+        .pricing-card.featured {
+            border-color: rgba(59, 130, 246, 0.5);
+            background: rgba(59, 130, 246, 0.1);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured::after {
+            content: 'Most Popular';
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0 0 12px 12px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        .pricing-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        
+        .pricing-card-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        
+        .pricing-card-description {
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .pricing-price {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 2rem;
+        }
+        
+        .pricing-currency {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #cbd5e1;
+        }
+        
+        .pricing-amount {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            margin: 0 0.25rem;
+        }
+        
+        .pricing-period {
+            font-size: 1rem;
+            color: #94a3b8;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2.5rem 0;
+        }
+        
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: #e2e8f0;
+            font-size: 1rem;
+        }
+        
+        .pricing-features li::before {
+            content: '✓';
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 0.75rem;
+            font-size: 1.125rem;
+        }
+        
+        .pricing-cta {
+            width: 100%;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.125rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-cta.primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+        }
+        
+        .pricing-cta.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .pricing-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .pricing-cta.primary:hover {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+        }
+        
+        .pricing-cta.secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .pricing-note {
+            text-align: center;
+            margin-top: 3rem;
+            color: #94a3b8;
+            font-size: 1rem;
+        }
+        
+        .pricing-guarantee {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .pricing-guarantee h4 {
+            color: #10b981;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .pricing-guarantee p {
+            color: #cbd5e1;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .pricing-title {
+                font-size: 2.5rem;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -908,53 +1159,95 @@
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section id="pricing" style="font-family:'Poppins', sans-serif; padding: 4rem 2rem; background: linear-gradient(to bottom right, #fff7d6, #f5f5f5);">
-        <h2 style="font-size: 2.5rem; text-align: center; margin-bottom: 1rem;">Simple, Fair Pricing</h2>
-        <p style="text-align: center; font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem;">
-            Buy it once. Use it forever. No subscriptions. No surprises.
-        </p>
-
-        <div style="display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); max-width: 1000px; margin: 0 auto;">
-            
-            <!-- Single License -->
-            <div style="background: white; border-radius: 16px; padding: 2rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                <h3 style="font-size: 1.5rem;">🔐 Single License</h3>
-                <p style="font-size: 2rem; font-weight: 600; margin: 0.5rem 0;">€49.50</p>
-                <ul style="list-style: none; padding: 0;">
-                    <li>✅ Lifetime use</li>
-                    <li>✅ One app or site</li>
-                    <li>✅ Full feature set</li>
-                    <li>✅ 12 months of updates</li>
-                </ul>
+    <!-- Premium Pricing Section -->
+    <section id="pricing" class="pricing-section py-20">
+        <div class="pricing-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="pricing-header">
+                <h2 class="pricing-title">Simple, Fair Pricing</h2>
+                <p class="pricing-subtitle">
+                    Buy it once. Use it forever. No subscriptions. No surprises.
+                </p>
             </div>
 
-            <!-- Bulk Pricing -->
-            <div style="background: white; border-radius: 16px; padding: 2rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                <h3 style="font-size: 1.5rem;">📦 Bulk Licenses</h3>
-                <ul style="list-style: none; padding: 0;">
-                    <li>5–10 licenses: <strong>€44.50</strong> each</li>
-                    <li>11–25 licenses: <strong>€39.00</strong> each</li>
-                    <li>25+ licenses: <strong>Custom quote</strong></li>
-                </ul>
-                <p style="margin-top: 1rem;">Perfect for agencies, dev teams, or marketplaces.</p>
+            <div class="pricing-grid">
+                <!-- Single License -->
+                <div class="pricing-card">
+                    <span class="pricing-icon">🔐</span>
+                    <h3 class="pricing-card-title">Single License</h3>
+                    <p class="pricing-card-description">Perfect for individual developers and small projects</p>
+                    
+                    <div class="pricing-price">
+                        <span class="pricing-currency">€</span>
+                        <span class="pricing-amount">49.50</span>
+                    </div>
+                    
+                    <ul class="pricing-features">
+                        <li>Lifetime use</li>
+                        <li>One app or site</li>
+                        <li>Full feature set</li>
+                        <li>12 months of updates</li>
+                        <li>Email support</li>
+                        <li>Complete documentation</li>
+                    </ul>
+                    
+                    <button class="pricing-cta secondary">Get Started</button>
+                </div>
+
+                <!-- Bulk Licenses - Featured -->
+                <div class="pricing-card featured">
+                    <span class="pricing-icon">📦</span>
+                    <h3 class="pricing-card-title">Bulk Licenses</h3>
+                    <p class="pricing-card-description">Ideal for agencies, dev teams, and growing businesses</p>
+                    
+                    <div class="pricing-price">
+                        <span class="pricing-currency">€</span>
+                        <span class="pricing-amount">39.00</span>
+                        <span class="pricing-period">each</span>
+                    </div>
+                    
+                    <ul class="pricing-features">
+                        <li>5-10 licenses: €44.50 each</li>
+                        <li>11-25 licenses: €39.00 each</li>
+                        <li>25+ licenses: Custom quote</li>
+                        <li>Volume discounts</li>
+                        <li>Priority support</li>
+                        <li>Team management</li>
+                    </ul>
+                    
+                    <button class="pricing-cta primary">Choose Plan</button>
+                </div>
+
+                <!-- Enterprise -->
+                <div class="pricing-card">
+                    <span class="pricing-icon">🏢</span>
+                    <h3 class="pricing-card-title">Enterprise</h3>
+                    <p class="pricing-card-description">Custom solutions for large organizations</p>
+                    
+                    <div class="pricing-price">
+                        <span class="pricing-amount" style="font-size: 2.5rem;">Custom</span>
+                    </div>
+                    
+                    <ul class="pricing-features">
+                        <li>White-label branding</li>
+                        <li>Custom integrations</li>
+                        <li>Dedicated support</li>
+                        <li>SLA guarantees</li>
+                        <li>On-premise deployment</li>
+                        <li>Custom features</li>
+                    </ul>
+                    
+                    <button class="pricing-cta secondary">Contact Sales</button>
+                </div>
             </div>
 
-            <!-- Add-Ons -->
-            <div style="background: white; border-radius: 16px; padding: 2rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                <h3 style="font-size: 1.5rem;">🧩 Optional Add-Ons</h3>
-                <ul style="list-style: none; padding: 0;">
-                    <li>White-label branding: <strong>€199</strong></li>
-                    <li>Priority email support (1yr): <strong>€99</strong></li>
-                    <li>Hosted version (optional): <strong>€29/mo</strong></li>
-                </ul>
+            <div class="pricing-guarantee">
+                <h4>🛡️ 30-Day Money-Back Guarantee</h4>
+                <p>Not satisfied? Get a full refund within 30 days, no questions asked.</p>
             </div>
-        </div>
 
-        <div style="text-align:center; margin-top: 3rem;">
-            <a href="#get-started" style="background-color:#ffd60a; padding: 1rem 2rem; font-weight: bold; border-radius: 8px; text-decoration: none; color: black; font-size: 1.1rem;">
-                🛒 Buy Now — Instant Download
-            </a>
+            <p class="pricing-note">
+                All prices include VAT where applicable. Enterprise pricing available upon request.
+            </p>
         </div>
     </section>
 
