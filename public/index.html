@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JpegtoVideo - Email Verification Login</title>
+    <title>RapidAuth.pro - Say Goodbye to Forgotten Passwords</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -16,228 +16,527 @@
                             600: '#2563eb',
                             700: '#1d4ed8',
                             900: '#1e3a8a'
+                        },
+                        accent: {
+                            500: '#f59e0b',
+                            600: '#d97706'
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.6s ease-out',
+                        'fade-in': 'fadeIn 0.8s ease-out',
+                        'pulse-slow': 'pulse 3s infinite',
+                        'bounce-gentle': 'bounceGentle 2s infinite'
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        bounceGentle: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
                         }
                     }
                 }
             }
         }
     </script>
+    <link rel="stylesheet" href="/public/css/theme.css">
     <style>
-        body {
+        .gradient-bg {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        .tab-active {
-            background: #000;
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Social login widget styling */
+        .social-login-widget {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 24px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            margin-bottom: 12px;
+        }
+        
+        .social-btn-twitter {
+            background: #1da1f2;
             color: white;
         }
-        .tab-inactive {
-            background: #f5f5f5;
-            color: #666;
+        
+        .social-btn-twitter:hover {
+            background: #1a91da;
+            color: white;
+        }
+        
+        .social-btn-facebook {
+            background: #4267b2;
+            color: white;
+        }
+        
+        .social-btn-facebook:hover {
+            background: #365899;
+            color: white;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.2s ease;
+            margin-bottom: 12px;
+            background: #fff5f5;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #80bdff;
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+        }
+        
+        .form-input::placeholder {
+            color: #6c757d;
+        }
+        
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin: 16px 0;
+        }
+        
+        .checkbox-container input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        
+        .sign-in-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        
+        .sign-in-btn:hover {
+            background: #218838;
+        }
+        
+        .sign-in-btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+        
+        .widget-footer {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 14px;
+            color: #6c757d;
+        }
+        
+        .widget-footer a {
+            color: #28a745;
+            text-decoration: none;
+        }
+        
+        .widget-footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4">
-    <div class="w-full max-w-4xl flex rounded-3xl overflow-hidden shadow-2xl">
-        <!-- Left Side - Branding -->
-        <div class="w-1/2 bg-gradient-to-br from-cyan-200 to-blue-300 p-12 flex flex-col justify-center relative overflow-hidden">
-            <div class="relative z-10">
-                <h1 class="text-4xl font-bold text-gray-800 mb-4">JpegtoVideo</h1>
-                <p class="text-xl text-gray-700 leading-relaxed">
-                    Work with ease,<br>
-                    live more.
-                </p>
-            </div>
-            <!-- Decorative waves -->
-            <div class="absolute bottom-0 left-0 w-full">
-                <svg viewBox="0 0 400 200" class="w-full h-32 opacity-30">
-                    <path d="M0,100 C100,50 200,150 400,100 L400,200 L0,200 Z" fill="rgba(255,255,255,0.3)"/>
-                    <path d="M0,120 C150,70 250,170 400,120 L400,200 L0,200 Z" fill="rgba(255,255,255,0.2)"/>
-                </svg>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <img src="/public/logo.png" alt="RapidAuth.pro" class="h-8 w-auto">
+                    <span class="ml-3 text-xl font-bold text-gray-900">RapidAuth.pro</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#demo" class="text-gray-600 hover:text-primary-600 transition-colors">Try Demo</a>
+                    <a href="#features" class="text-gray-600 hover:text-primary-600 transition-colors">Features</a>
+                    <a href="#pricing" class="text-gray-600 hover:text-primary-600 transition-colors">Pricing</a>
+                    <button class="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors">
+                        Get Started
+                    </button>
+                </div>
             </div>
         </div>
+    </nav>
 
-        <!-- Right Side - Login Form -->
-        <div class="w-1/2 bg-white p-12 flex flex-col justify-center">
-            <!-- Login Method Tabs -->
-            <div class="flex mb-8 bg-gray-100 rounded-lg p-1">
-                <button class="flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all tab-inactive" onclick="switchTab('qr')">
-                    <span class="mr-2">📱</span> QR
-                </button>
-                <button class="flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all tab-inactive" onclick="switchTab('qq')">
-                    <span class="mr-2">💬</span> QQ
-                </button>
-                <button class="flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all tab-active" onclick="switchTab('email')" id="email-tab">
-                    <span class="mr-2">✉️</span> Email
-                </button>
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-20 lg:py-32 relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center animate-fade-in-up">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+                    Say Goodbye to<br>
+                    <span class="text-accent-500">Forgotten Passwords.</span>
+                </h1>
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold mb-8 text-gray-100">
+                    Say Hello to Clients Who Actually Log In.
+                </h2>
+                
+                <div class="max-w-4xl mx-auto mb-12">
+                    <p class="text-lg md:text-xl text-gray-200 mb-6 leading-relaxed">
+                        They clicked your email.<br>
+                        They opened your app.<br>
+                        And then... they hit a login wall.
+                    </p>
+                    <p class="text-xl md:text-2xl font-medium mb-8">
+                        Don't lose users to friction.<br>
+                        <strong>RapidAuth.pro</strong> makes onboarding effortless with passwordless, 2FA-secure sign-in flows that work — every time.
+                    </p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+                    <button onclick="scrollToDemo()" class="bg-accent-500 hover:bg-accent-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all hover-lift animate-bounce-gentle">
+                        ✅ Try It Live ↓
+                    </button>
+                    <p class="text-gray-300 text-sm">🧪 No passwords. No delays. No drop-off.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pain Point Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                    🧨 The Real Cost of Bad Login Flows
+                </h2>
+                <blockquote class="text-xl md:text-2xl text-gray-600 italic mb-8">
+                    "We just never finished onboarding. I couldn't log in."
+                </blockquote>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto">
+                    If you've heard this, you're not alone.<br>
+                    Most users don't hate your product — they hate passwords.<br>
+                    The endless reset loops. The "wrong format" errors.<br>
+                    The forgotten logins, browser lockouts, and broken flows.
+                </p>
             </div>
 
-            <!-- Email Login Form -->
-            <div id="email-form">
-                <h2 class="text-2xl font-semibold text-gray-800 mb-8 text-center">Email Verification Login</h2>
-                
-                <!-- Step 1: Email Input -->
-                <div id="email-step" class="space-y-6">
-                    <div>
-                        <input 
-                            type="email" 
-                            id="email-input"
-                            class="w-full px-4 py-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-gray-600"
-                            placeholder="Please enter your email address"
-                            required
-                        >
+            <div class="grid md:grid-cols-2 gap-12 mb-16">
+                <!-- Problem Side -->
+                <div class="bg-red-50 p-8 rounded-2xl border-l-4 border-red-500">
+                    <h3 class="text-2xl font-bold text-red-800 mb-6 flex items-center">
+                        💔 What Happens When Login Gets in the Way
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <span class="text-red-500 font-bold">❌</span>
+                            <div>
+                                <strong class="text-red-700">Weak password rejected</strong>
+                                <p class="text-red-600">→ Abandon sign-up</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="text-red-500 font-bold">❌</span>
+                            <div>
+                                <strong class="text-red-700">Email verification lost in inbox</strong>
+                                <p class="text-red-600">→ Never finish onboarding</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="text-red-500 font-bold">❌</span>
+                            <div>
+                                <strong class="text-red-700">Forgot password (again)</strong>
+                                <p class="text-red-600">→ Ghost your product</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="text-red-500 font-bold">❌</span>
+                            <div>
+                                <strong class="text-red-700">Login requires 2 devices</strong>
+                                <p class="text-red-600">→ Rage quit on mobile</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="text-red-500 font-bold">❌</span>
+                            <div>
+                                <strong class="text-red-700">"Code expired" after 30 seconds</strong>
+                                <p class="text-red-600">→ Close tab and move on</p>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="flex gap-3">
-                        <input 
-                            type="text" 
-                            id="code-input"
-                            class="flex-1 px-4 py-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-gray-600"
-                            placeholder="Please enter the code"
-                            maxlength="6"
-                            disabled
-                        >
+                </div>
+
+                <!-- Solution Side -->
+                <div class="bg-green-50 p-8 rounded-2xl border-l-4 border-green-500">
+                    <h3 class="text-2xl font-bold text-green-800 mb-6 flex items-center">
+                        ✅ What Happens When You Use RapidAuth.pro
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <span class="text-green-500 font-bold">✅</span>
+                            <div>
+                                <strong class="text-green-700">One-click login via magic link</strong>
+                                <p class="text-green-600">→ 3x more activations</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="text-green-500 font-bold">✅</span>
+                            <div>
+                                <strong class="text-green-700">Email-based 2FA, not SMS</strong>
+                                <p class="text-green-600">→ GDPR-safe, no phone needed</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="text-green-500 font-bold">✅</span>
+                            <div>
+                                <strong class="text-green-700">Session trust with device memory</strong>
+                                <p class="text-green-600">→ Smooth repeat logins</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="text-green-500 font-bold">✅</span>
+                            <div>
+                                <strong class="text-green-700">No passwords, ever</strong>
+                                <p class="text-green-600">→ Users onboard and stay</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="text-green-500 font-bold">✅</span>
+                            <div>
+                                <strong class="text-green-700">10-minute code validity</strong>
+                                <p class="text-green-600">→ No rush, no stress</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Demo Section -->
+    <section id="demo" class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    🚀 Try RapidAuth.pro Live
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Experience the smooth, passwordless login flow your users will love. 
+                    Enter your email below and see how effortless authentication can be.
+                </p>
+            </div>
+
+            <div class="max-w-md mx-auto">
+                <div class="social-login-widget">
+                    <div id="login-form">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4" style="color: #28a745;">
+                            Sign In
+                        </h3>
+                        
+                        <div class="mb-4">
+                            <p class="text-sm text-gray-600 mb-3">Sign in using social network:</p>
+                            <a href="#" class="social-btn social-btn-twitter">
+                                <span class="mr-2">🐦</span> Login with Twitter
+                            </a>
+                            <a href="#" class="social-btn social-btn-facebook">
+                                <span class="mr-2">📘</span> Login with Facebook
+                            </a>
+                        </div>
+
+                        <div class="mb-4">
+                            <p class="text-sm text-gray-600 mb-3">Sign in using your registered account:</p>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                class="form-input"
+                                placeholder="Username"
+                                required
+                            >
+                            <input 
+                                type="password" 
+                                id="password" 
+                                class="form-input"
+                                placeholder="Password"
+                                required
+                            >
+                        </div>
+
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="remember" />
+                            <label for="remember" class="text-sm text-gray-600">Keep me signed in</label>
+                        </div>
+
+                        <div class="text-right mb-4">
+                            <button 
+                                onclick="requestCode()" 
+                                id="request-btn"
+                                class="sign-in-btn"
+                            >
+                                Sign In
+                            </button>
+                        </div>
+
+                        <div class="widget-footer">
+                            Don't have an account? <a href="#" onclick="showSignUp()">Sign Up</a><br>
+                            Remind <a href="#" onclick="showPasswordReset()">Password</a>
+                        </div>
+                    </div>
+
+                    <div id="verify-form" class="hidden">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4" style="color: #28a745;">
+                            Check Your Email 📧
+                        </h3>
+                        <p class="text-gray-600 mb-4 text-sm">
+                            We sent a 6-digit code to <span id="sent-email" class="font-semibold"></span>
+                        </p>
+                        
+                        <div class="mb-4">
+                            <input 
+                                type="text" 
+                                id="code" 
+                                class="form-input"
+                                placeholder="Enter verification code"
+                                maxlength="6"
+                                required
+                            >
+                        </div>
+
+                        <div class="text-right mb-4">
+                            <button 
+                                onclick="verifyCode()" 
+                                id="verify-btn"
+                                class="sign-in-btn"
+                            >
+                                Verify & Login
+                            </button>
+                        </div>
+
+                        <div class="widget-footer">
+                            <a href="#" onclick="resetForm()">← Back to sign in</a>
+                        </div>
+                    </div>
+
+                    <div id="success-form" class="hidden text-center">
+                        <div class="text-4xl mb-4">🎉</div>
+                        <h3 class="text-xl font-semibold text-green-600 mb-4">
+                            Welcome! You're logged in.
+                        </h3>
+                        <p class="text-gray-600 mb-4 text-sm">
+                            That was easy, wasn't it? No passwords, no friction, just smooth authentication.
+                        </p>
                         <button 
-                            onclick="getCode()" 
-                            id="get-code-btn"
-                            class="px-6 py-4 bg-gray-100 text-gray-400 rounded-lg font-medium transition-all cursor-not-allowed"
-                            disabled
+                            onclick="resetForm()" 
+                            class="sign-in-btn"
                         >
-                            Get code
+                            Try Again
                         </button>
                     </div>
 
-                    <button 
-                        onclick="login()" 
-                        id="login-btn"
-                        class="w-full bg-black text-white py-4 rounded-lg font-semibold hover:bg-gray-800 transition-all disabled:bg-gray-300 disabled:cursor-not-allowed"
-                        disabled
-                    >
-                        Login
-                    </button>
+                    <div id="loading" class="hidden text-center py-8">
+                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600 mx-auto mb-4"></div>
+                        <p class="text-gray-600 text-sm">Processing...</p>
+                    </div>
 
-                    <p class="text-center text-gray-500 text-sm">
-                        No password is required
-                    </p>
+                    <div id="error-message" class="hidden mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+                        <p class="text-red-700 text-sm text-center"></p>
+                    </div>
                 </div>
-
-                <!-- Success State -->
-                <div id="success-step" class="hidden text-center space-y-6">
-                    <div class="text-6xl mb-4">🎉</div>
-                    <h3 class="text-2xl font-semibold text-green-600 mb-4">
-                        Login Successful!
-                    </h3>
-                    <p class="text-gray-600 mb-6">
-                        Welcome! You have been successfully authenticated.
-                    </p>
-                    <button 
-                        onclick="resetForm()" 
-                        class="bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition-all"
-                    >
-                        Try Again
-                    </button>
-                </div>
-
-                <!-- Loading State -->
-                <div id="loading" class="hidden text-center py-8">
-                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-                    <p class="text-gray-600">Processing...</p>
-                </div>
-
-                <!-- Error Message -->
-                <div id="error-message" class="hidden mt-4 p-4 bg-red-50 border border-red-200 rounded-lg">
-                    <p class="text-red-700 text-sm text-center"></p>
-                </div>
-            </div>
-
-            <!-- Placeholder for other tabs -->
-            <div id="qr-form" class="hidden text-center py-12">
-                <div class="text-6xl mb-4">📱</div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">QR Code Login</h3>
-                <p class="text-gray-600">QR code login functionality would be implemented here.</p>
-            </div>
-
-            <div id="qq-form" class="hidden text-center py-12">
-                <div class="text-6xl mb-4">💬</div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">QQ Login</h3>
-                <p class="text-gray-600">QQ login functionality would be implemented here.</p>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Built for Modern Applications
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Everything you need for secure, user-friendly authentication
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center p-6 rounded-xl hover-lift">
+                    <div class="text-4xl mb-4">🔐</div>
+                    <h3 class="text-xl font-semibold mb-3">Enterprise Security</h3>
+                    <p class="text-gray-600">JWT tokens, bcrypt hashing, rate limiting, and Redis session storage</p>
+                </div>
+                <div class="text-center p-6 rounded-xl hover-lift">
+                    <div class="text-4xl mb-4">⚡</div>
+                    <h3 class="text-xl font-semibold mb-3">Lightning Fast</h3>
+                    <p class="text-gray-600">Minimal Express.js API with optimized email delivery and caching</p>
+                </div>
+                <div class="text-center p-6 rounded-xl hover-lift">
+                    <div class="text-4xl mb-4">🎨</div>
+                    <h3 class="text-xl font-semibold mb-3">White-Label Ready</h3>
+                    <p class="text-gray-600">Customizable branding, email templates, and styling options</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex items-center justify-center mb-4">
+                    <img src="/public/logo.png" alt="RapidAuth.pro" class="h-8 w-auto">
+                    <span class="ml-3 text-xl font-bold">RapidAuth.pro</span>
+                </div>
+                <p class="text-gray-400 mb-4">
+                    Passwordless authentication that actually works.
+                </p>
+                <p class="text-sm text-gray-500">
+                    © 2025 RapidAuth.pro. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
 
     <script>
         let currentEmail = '';
-        let codeRequested = false;
 
-        function switchTab(tab) {
-            // Update tab styles
-            document.querySelectorAll('.flex-1').forEach(btn => {
-                btn.className = btn.className.replace('tab-active', 'tab-inactive');
+        function scrollToDemo() {
+            document.getElementById('demo').scrollIntoView({ 
+                behavior: 'smooth' 
             });
-            
-            if (tab === 'email') {
-                document.getElementById('email-tab').className = document.getElementById('email-tab').className.replace('tab-inactive', 'tab-active');
-            }
-
-            // Show/hide forms
-            document.getElementById('email-form').classList.toggle('hidden', tab !== 'email');
-            document.getElementById('qr-form').classList.toggle('hidden', tab !== 'qr');
-            document.getElementById('qq-form').classList.toggle('hidden', tab !== 'qq');
-        }
-
-        function validateEmail(email) {
-            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        }
-
-        function updateUI() {
-            const email = document.getElementById('email-input').value;
-            const code = document.getElementById('code-input').value;
-            const getCodeBtn = document.getElementById('get-code-btn');
-            const loginBtn = document.getElementById('login-btn');
-            const codeInput = document.getElementById('code-input');
-
-            const emailValid = validateEmail(email);
-            
-            // Enable/disable Get code button
-            if (emailValid && !codeRequested) {
-                getCodeBtn.disabled = false;
-                getCodeBtn.className = 'px-6 py-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-all cursor-pointer';
-                getCodeBtn.textContent = 'Get code';
-            } else if (codeRequested) {
-                getCodeBtn.disabled = true;
-                getCodeBtn.className = 'px-6 py-4 bg-gray-300 text-gray-500 rounded-lg font-medium transition-all cursor-not-allowed';
-                getCodeBtn.textContent = 'Code sent';
-            } else {
-                getCodeBtn.disabled = true;
-                getCodeBtn.className = 'px-6 py-4 bg-gray-100 text-gray-400 rounded-lg font-medium transition-all cursor-not-allowed';
-                getCodeBtn.textContent = 'Get code';
-            }
-
-            // Enable/disable code input
-            codeInput.disabled = !codeRequested;
-            if (codeRequested) {
-                codeInput.className = codeInput.className.replace('text-gray-400', 'text-gray-600');
-            }
-
-            // Enable/disable login button
-            if (emailValid && code.length === 6 && codeRequested) {
-                loginBtn.disabled = false;
-                loginBtn.className = 'w-full bg-black text-white py-4 rounded-lg font-semibold hover:bg-gray-800 transition-all';
-            } else {
-                loginBtn.disabled = true;
-                loginBtn.className = 'w-full bg-gray-300 text-gray-500 py-4 rounded-lg font-semibold transition-all cursor-not-allowed';
-            }
         }
 
         function showLoading() {
             document.getElementById('loading').classList.remove('hidden');
-            document.getElementById('email-step').classList.add('hidden');
-            document.getElementById('success-step').classList.add('hidden');
+            document.getElementById('login-form').classList.add('hidden');
+            document.getElementById('verify-form').classList.add('hidden');
+            document.getElementById('success-form').classList.add('hidden');
         }
 
         function hideLoading() {
@@ -253,10 +552,18 @@
             }, 5000);
         }
 
-        async function getCode() {
-            const email = document.getElementById('email-input').value;
-            if (!validateEmail(email)) {
-                showError('Please enter a valid email address');
+        function showSignUp() {
+            alert('Sign up functionality would be implemented here');
+        }
+
+        function showPasswordReset() {
+            alert('Password reset functionality would be implemented here');
+        }
+
+        async function requestCode() {
+            const email = document.getElementById('email').value;
+            if (!email) {
+                showError('Please enter your email address');
                 return;
             }
 
@@ -276,25 +583,24 @@
                 hideLoading();
 
                 if (response.ok) {
-                    codeRequested = true;
-                    document.getElementById('email-step').classList.remove('hidden');
-                    document.getElementById('code-input').focus();
-                    updateUI();
+                    document.getElementById('sent-email').textContent = email;
+                    document.getElementById('login-form').classList.add('hidden');
+                    document.getElementById('verify-form').classList.remove('hidden');
                 } else {
                     showError(data.error || 'Failed to send code');
-                    document.getElementById('email-step').classList.remove('hidden');
+                    document.getElementById('login-form').classList.remove('hidden');
                 }
             } catch (error) {
                 hideLoading();
                 showError('Network error. Please try again.');
-                document.getElementById('email-step').classList.remove('hidden');
+                document.getElementById('login-form').classList.remove('hidden');
             }
         }
 
-        async function login() {
-            const code = document.getElementById('code-input').value;
-            if (!code || code.length !== 6) {
-                showError('Please enter the 6-digit verification code');
+        async function verifyCode() {
+            const code = document.getElementById('code').value;
+            if (!code) {
+                showError('Please enter the verification code');
                 return;
             }
 
@@ -317,58 +623,67 @@
 
                 if (response.ok) {
                     localStorage.setItem('authToken', data.token);
-                    document.getElementById('email-step').classList.add('hidden');
-                    document.getElementById('success-step').classList.remove('hidden');
+                    
+                    document.getElementById('verify-form').classList.add('hidden');
+                    document.getElementById('success-form').classList.remove('hidden');
                 } else {
-                    showError(data.error || 'Invalid verification code');
-                    document.getElementById('email-step').classList.remove('hidden');
+                    showError(data.error || 'Invalid code');
+                    document.getElementById('verify-form').classList.remove('hidden');
                 }
             } catch (error) {
                 hideLoading();
                 showError('Network error. Please try again.');
-                document.getElementById('email-step').classList.remove('hidden');
+                document.getElementById('verify-form').classList.remove('hidden');
             }
         }
 
         function resetForm() {
-            document.getElementById('email-input').value = '';
-            document.getElementById('code-input').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('code').value = '';
             currentEmail = '';
-            codeRequested = false;
             
-            document.getElementById('email-step').classList.remove('hidden');
-            document.getElementById('success-step').classList.add('hidden');
+            document.getElementById('login-form').classList.remove('hidden');
+            document.getElementById('verify-form').classList.add('hidden');
+            document.getElementById('success-form').classList.add('hidden');
             document.getElementById('error-message').classList.add('hidden');
-            
-            updateUI();
         }
 
-        // Event listeners
-        document.getElementById('email-input').addEventListener('input', updateUI);
-        document.getElementById('code-input').addEventListener('input', updateUI);
+        // Auto-focus on code input when it becomes visible
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.target.id === 'verify-form' && !mutation.target.classList.contains('hidden')) {
+                    setTimeout(() => {
+                        document.getElementById('code').focus();
+                    }, 100);
+                }
+            });
+        });
+
+        observer.observe(document.getElementById('verify-form'), {
+            attributes: true,
+            attributeFilter: ['class']
+        });
+
+        // Auto-submit code when 6 digits are entered
+        document.getElementById('code').addEventListener('input', (e) => {
+            if (e.target.value.length === 6) {
+                setTimeout(verifyCode, 500);
+            }
+        });
 
         // Enter key handlers
-        document.getElementById('email-input').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && !document.getElementById('get-code-btn').disabled) {
-                getCode();
-            }
+        document.getElementById('email').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') requestCode();
         });
 
-        document.getElementById('code-input').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && !document.getElementById('login-btn').disabled) {
-                login();
-            }
+        document.getElementById('password').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') requestCode();
         });
 
-        // Auto-submit when 6 digits are entered
-        document.getElementById('code-input').addEventListener('input', (e) => {
-            if (e.target.value.length === 6 && !document.getElementById('login-btn').disabled) {
-                setTimeout(login, 500);
-            }
+        document.getElementById('code').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') verifyCode();
         });
-
-        // Initialize UI
-        updateUI();
     </script>
 </body>
 </html>
