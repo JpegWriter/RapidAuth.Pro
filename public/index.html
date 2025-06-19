@@ -379,6 +379,71 @@
             animation: typewriter 3s steps(40, end) forwards, blink 1s infinite;
         }
         
+        /* Statistics section styling */
+        .stats-card {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            border-left: 4px solid #EA4335;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .stats-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+        }
+        
+        .stats-card.solution {
+            border-left-color: #34A853;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #EA4335;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        
+        .stat-number.positive {
+            color: #34A853;
+        }
+        
+        .stats-table {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            border: 1px solid #DADCE0;
+        }
+        
+        .stats-table th {
+            background: #F8F9FA;
+            padding: 20px 24px;
+            font-weight: 600;
+            color: #3C4043;
+            text-align: left;
+            border-bottom: 2px solid #DADCE0;
+        }
+        
+        .stats-table td {
+            padding: 20px 24px;
+            border-bottom: 1px solid #F1F3F4;
+            color: #5F6368;
+        }
+        
+        .stats-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .stats-table .stat-cell {
+            font-weight: 700;
+            color: #EA4335;
+            font-size: 18px;
+        }
+        
         /* Responsive design */
         @media (max-width: 768px) {
             .auth-widget {
@@ -392,6 +457,14 @@
             
             .feature-card {
                 padding: 32px 24px;
+            }
+            
+            .stats-card {
+                padding: 24px;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
             }
         }
         
@@ -712,8 +785,187 @@
         </div>
     </section>
 
+    <!-- Password Friction Statistics Section -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-20 animate-fade-in">
+                <h2 class="text-4xl md:text-5xl font-black text-google-grey-dark mb-6">
+                    🔍 Real Password Friction Statistics
+                </h2>
+                <p class="text-xl text-google-grey max-w-4xl mx-auto leading-relaxed">
+                    The data doesn't lie. Password-based authentication is costing businesses billions 
+                    in lost revenue and customer frustration every single day.
+                </p>
+            </div>
+
+            <!-- Key Statistics Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <div class="stats-card">
+                    <div class="stat-number">77%</div>
+                    <h4 class="font-bold text-google-grey-dark mb-2">Forgot Password</h4>
+                    <p class="text-google-grey text-sm">of users forgot a password in the last month</p>
+                </div>
+                
+                <div class="stats-card">
+                    <div class="stat-number">46%</div>
+                    <h4 class="font-bold text-google-grey-dark mb-2">Transaction Abandonment</h4>
+                    <p class="text-google-grey text-sm">abandon purchases due to auth failures</p>
+                </div>
+                
+                <div class="stats-card">
+                    <div class="stat-number">28.6%</div>
+                    <h4 class="font-bold text-google-grey-dark mb-2">Reset Failures</h4>
+                    <p class="text-google-grey text-sm">of password resets fail completely</p>
+                </div>
+                
+                <div class="stats-card solution">
+                    <div class="stat-number positive">3x</div>
+                    <h4 class="font-bold text-google-grey-dark mb-2">RapidAuth Conversion</h4>
+                    <p class="text-google-grey text-sm">higher completion with passwordless</p>
+                </div>
+            </div>
+
+            <!-- Detailed Statistics -->
+            <div class="grid lg:grid-cols-3 gap-12 mb-16">
+                <!-- Forgot Passwords -->
+                <div class="stats-card">
+                    <h3 class="text-xl font-bold text-google-grey-dark mb-6 flex items-center gap-3">
+                        <span class="text-2xl">⚠️</span>
+                        Forgot Passwords & Login Failures
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-tech-red pl-4">
+                            <div class="font-semibold text-google-grey-dark">32% in 24 hours</div>
+                            <div class="text-google-grey text-sm">forgot a password yesterday</div>
+                        </div>
+                        <div class="border-l-4 border-tech-red pl-4">
+                            <div class="font-semibold text-google-grey-dark">55% in past week</div>
+                            <div class="text-google-grey text-sm">had password issues recently</div>
+                        </div>
+                        <div class="border-l-4 border-tech-red pl-4">
+                            <div class="font-semibold text-google-grey-dark">27% mobile banking</div>
+                            <div class="text-google-grey text-sm">reset passwords this year</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cart Abandonment -->
+                <div class="stats-card">
+                    <h3 class="text-xl font-bold text-google-grey-dark mb-6 flex items-center gap-3">
+                        <span class="text-2xl">🛒</span>
+                        Cart & Transaction Abandonment
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-tech-red pl-4">
+                            <div class="font-semibold text-google-grey-dark">42% abandoned purchase</div>
+                            <div class="text-google-grey text-sm">due to forgotten password</div>
+                        </div>
+                        <div class="border-l-4 border-tech-red pl-4">
+                            <div class="font-semibold text-google-grey-dark">50% of 25-34 year olds</div>
+                            <div class="text-google-grey text-sm">abandoned due to auth issues</div>
+                        </div>
+                        <div class="border-l-4 border-tech-red pl-4">
+                            <div class="font-semibold text-google-grey-dark">18.8% checkout drops</div>
+                            <div class="text-google-grey text-sm">from password reset failures</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RapidAuth Solution -->
+                <div class="stats-card solution">
+                    <h3 class="text-xl font-bold text-google-grey-dark mb-6 flex items-center gap-3">
+                        <span class="text-2xl">🏆</span>
+                        How RapidAuth Fixes This
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-tech-green pl-4">
+                            <div class="font-semibold text-google-grey-dark">No forgotten credentials</div>
+                            <div class="text-google-grey text-sm">eliminate password memory issues</div>
+                        </div>
+                        <div class="border-l-4 border-tech-green pl-4">
+                            <div class="font-semibold text-google-grey-dark">No reset loops</div>
+                            <div class="text-google-grey text-sm">instant login via magic link</div>
+                        </div>
+                        <div class="border-l-4 border-tech-green pl-4">
+                            <div class="font-semibold text-google-grey-dark">Smooth onboarding</div>
+                            <div class="text-google-grey text-sm">stops customer leakage</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary Table -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold text-google-grey-dark mb-8 text-center">
+                    🧠 What This Means for Your Business
+                </h3>
+                
+                <table class="stats-table w-full">
+                    <thead>
+                        <tr>
+                            <th>Problem</th>
+                            <th>Impact</th>
+                            <th>RapidAuth Solution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Forgot password in 24 hrs</td>
+                            <td class="stat-cell">32%</td>
+                            <td class="text-tech-green font-semibold">✓ No passwords to forget</td>
+                        </tr>
+                        <tr>
+                            <td>Forgot password in past month</td>
+                            <td class="stat-cell">77%</td>
+                            <td class="text-tech-green font-semibold">✓ Magic link authentication</td>
+                        </tr>
+                        <tr>
+                            <td>Abandoned purchase (25-34yo)</td>
+                            <td class="stat-cell">50%</td>
+                            <td class="text-tech-green font-semibold">✓ One-click login</td>
+                        </tr>
+                        <tr>
+                            <td>Transaction failed due to auth</td>
+                            <td class="stat-cell">46%</td>
+                            <td class="text-tech-green font-semibold">✓ Instant access</td>
+                        </tr>
+                        <tr>
+                            <td>Password reset failure rate</td>
+                            <td class="stat-cell">28.6%</td>
+                            <td class="text-tech-green font-semibold">✓ No reset needed</td>
+                        </tr>
+                        <tr>
+                            <td>Total login failure attempts</td>
+                            <td class="stat-cell">~24%</td>
+                            <td class="text-tech-green font-semibold">✓ 99.9% success rate</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="text-center bg-gradient-to-r from-google-yellow/10 to-tech-green/10 rounded-3xl p-12">
+                <h3 class="text-3xl font-black text-google-grey-dark mb-6">
+                    Stop Losing Revenue to Password Friction
+                </h3>
+                <p class="text-xl text-google-grey mb-8 max-w-3xl mx-auto">
+                    Every day you delay implementing passwordless authentication is another day of lost customers, 
+                    abandoned carts, and frustrated users. The statistics are clear—passwords are costing you money.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="scrollToDemo()" class="btn-primary text-lg px-8 py-4">
+                        🚀 Try RapidAuth Now
+                    </button>
+                    <a href="#pricing" class="btn-secondary text-lg px-8 py-4">
+                        View Pricing
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Features Section -->
-    <section id="features" class="py-24 bg-white">
+    <section id="features" class="py-24 bg-google-grey-bg">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="text-center mb-20 animate-fade-in">
                 <h2 class="text-4xl md:text-5xl font-black text-google-grey-dark mb-6">
@@ -795,7 +1047,7 @@
     </section>
 
     <!-- Pricing Section -->
-    <section id="pricing" class="py-24 bg-google-grey-bg">
+    <section id="pricing" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="text-center mb-20 animate-fade-in">
                 <h2 class="text-4xl md:text-5xl font-black text-google-grey-dark mb-6">
