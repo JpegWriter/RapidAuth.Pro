@@ -34,7 +34,9 @@
                         'fade-in': 'fadeIn 1s ease-out',
                         'slide-in': 'slideIn 0.6s ease-out',
                         'float': 'float 6s ease-in-out infinite',
-                        'glow': 'glow 2s ease-in-out infinite alternate'
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'typewriter': 'typewriter 3s steps(40, end) 1s forwards',
+                        'blink': 'blink 1s infinite'
                     },
                     keyframes: {
                         fadeInUp: {
@@ -56,6 +58,14 @@
                         glow: {
                             '0%': { boxShadow: '0 0 20px rgba(251, 188, 4, 0.3)' },
                             '100%': { boxShadow: '0 0 40px rgba(251, 188, 4, 0.6)' }
+                        },
+                        typewriter: {
+                            '0%': { width: '0' },
+                            '100%': { width: '100%' }
+                        },
+                        blink: {
+                            '0%, 50%': { borderColor: 'transparent' },
+                            '51%, 100%': { borderColor: '#FBBC04' }
                         }
                     },
                     backdropBlur: {
@@ -355,6 +365,20 @@
             100% { transform: rotate(360deg); }
         }
         
+        /* Typewriter effect */
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid #FBBC04;
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typewriter 3s steps(40, end) 1s forwards, blink 1s infinite;
+            width: 0;
+        }
+        
+        .typewriter.started {
+            animation: typewriter 3s steps(40, end) forwards, blink 1s infinite;
+        }
+        
         /* Responsive design */
         @media (max-width: 768px) {
             .auth-widget {
@@ -413,9 +437,9 @@
                     <span class="text-google-grey text-sm font-medium">Enterprise-grade passwordless authentication</span>
                 </div>
                 
-                <h1 class="text-5xl md:text-7xl lg:text-8xl font-black text-google-grey-dark mb-8 leading-tight">
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-black text-google-grey-dark mb-8 leading-tight">
                     Stop Losing Clients at<br>
-                    <span class="gradient-text">the Login Page</span>
+                    <span class="gradient-text typewriter" id="typewriter-text">the Login Page</span>
                 </h1>
                 
                 <p class="text-xl md:text-2xl text-google-grey max-w-4xl mx-auto mb-12 leading-relaxed font-medium">
@@ -598,7 +622,7 @@
                 <div class="auth-widget animate-fade-in">
                     <!-- Widget Header -->
                     <div class="text-center mb-8">
-                        <h3 class="text-2xl font-bold text-google-grey-dark mb-2">Email Verification Login</h3>
+                        <h3 class="text-2xl font-bold text-google-grey-dark mb-2 typewriter" id="widget-title">Email Verification Login</h3>
                         <p class="text-google-grey">Enter your email to experience passwordless auth</p>
                     </div>
 
@@ -1074,6 +1098,31 @@
             document.getElementById('error-message').classList.add('hidden');
             
             updateSteps(1);
+            
+            // Restart typewriter effect
+            startTypewriterEffect();
+        }
+
+        function startTypewriterEffect() {
+            const typewriterElement = document.getElementById('typewriter-text');
+            const widgetTitle = document.getElementById('widget-title');
+            
+            // Reset typewriter
+            typewriterElement.style.width = '0';
+            typewriterElement.classList.remove('started');
+            
+            // Start typewriter after a delay
+            setTimeout(() => {
+                typewriterElement.classList.add('started');
+            }, 500);
+            
+            // Widget title typewriter
+            if (widgetTitle) {
+                widgetTitle.style.width = '0';
+                setTimeout(() => {
+                    widgetTitle.style.animation = 'typewriter 2s steps(30, end) forwards, blink 1s infinite';
+                }, 1000);
+            }
         }
 
         // Enable "Get Code" button when email is entered
@@ -1118,6 +1167,11 @@
                     });
                 }
             });
+        });
+
+        // Initialize typewriter effect on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            startTypewriterEffect();
         });
     </script>
 </body>
