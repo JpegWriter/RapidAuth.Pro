@@ -35,6 +35,11 @@ app.use(express.json());
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(morgan('combined'));
 
+// Serve homepage at root
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 let redisClient;
 if (process.env.REDIS_URL) {
   redisClient = createClient({ url: process.env.REDIS_URL });
@@ -73,7 +78,7 @@ const otpLimiter = rateLimit({
 });
 
 // Mail transport
-const transporter = nodemailer.createTransport({
+const transporter = nodemailer.createTransporter({
   host: process.env.SMTP_HOST,
   port: Number(process.env.SMTP_PORT || 587),
   secure: process.env.SMTP_SECURE === 'true',
