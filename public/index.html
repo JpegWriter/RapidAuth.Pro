@@ -12,23 +12,13 @@
             theme: {
                 extend: {
                     colors: {
-                        google: {
-                            yellow: '#FBBC04',
-                            'yellow-dark': '#F9AB00',
-                            grey: '#5F6368',
-                            'grey-light': '#9AA0A6',
-                            'grey-dark': '#3C4043',
-                            'grey-bg': '#F8F9FA',
-                            'grey-border': '#DADCE0'
-                        },
-                        tech: {
-                            blue: '#1A73E8',
-                            green: '#34A853',
-                            red: '#EA4335'
-                        }
+                        primary: '#FFA500',
+                        'primary-dark': '#FF8C00',
+                        secondary: '#6B7280',
+                        accent: '#10B981'
                     },
                     fontFamily: {
-                        'google': ['Inter', 'system-ui', '-apple-system', 'sans-serif']
+                        'sans': ['Inter', 'system-ui', '-apple-system', 'sans-serif']
                     }
                 }
             }
@@ -41,147 +31,65 @@
             -moz-osx-font-smoothing: grayscale;
         }
         
-        .glass {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .shadow-premium {
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.04);
-        }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, #FBBC04 0%, #F9AB00 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .gradient-bg {
+            background: linear-gradient(135deg, #FFF7ED 0%, #FFFFFF 100%);
         }
         
         .logo-img {
-            height: 48px;
-            width: auto;
-            border-radius: 8px;
-        }
-        
-        .widget-logo {
             height: 40px;
             width: auto;
-            border-radius: 6px;
-        }
-        
-        .nav-link {
-            color: #5F6368;
-            font-weight: 500;
-            padding: 12px 20px;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-        }
-        
-        .nav-link:hover {
-            color: #3C4043;
-            background: #F8F9FA;
-        }
-        
-        .nav-link.active {
-            color: #FBBC04;
-            background: #FFFBF0;
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #FBBC04 0%, #F9AB00 100%);
-            color: #3C4043;
+            background: #FFA500;
+            color: white;
             font-weight: 600;
             padding: 12px 24px;
-            border-radius: 12px;
+            border-radius: 8px;
             border: none;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
         }
         
         .btn-primary:hover {
+            background: #FF8C00;
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(251, 188, 4, 0.4);
         }
         
         .btn-secondary {
             background: white;
-            color: #3C4043;
+            color: #374151;
             font-weight: 600;
             padding: 12px 24px;
-            border-radius: 12px;
-            border: 2px solid #DADCE0;
+            border-radius: 8px;
+            border: 2px solid #E5E7EB;
             cursor: pointer;
             transition: all 0.3s ease;
         }
         
         .btn-secondary:hover {
-            border-color: #FBBC04;
+            border-color: #FFA500;
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
         }
         
         .feature-card {
             background: white;
-            border-radius: 20px;
+            border-radius: 16px;
             padding: 32px;
-            border: 1px solid #DADCE0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
         }
         
         .feature-card:hover {
-            border-color: #FBBC04;
             transform: translateY(-8px);
             box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
         }
         
-        .pricing-card {
-            background: white;
-            border-radius: 24px;
-            padding: 40px;
-            border: 2px solid #DADCE0;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .pricing-card.featured {
-            border-color: #FBBC04;
-            transform: scale(1.05);
-            box-shadow: 0 20px 40px rgba(251, 188, 4, 0.2);
-        }
-        
-        .pricing-card.featured::before {
-            content: 'Most Popular';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(135deg, #FBBC04 0%, #F9AB00 100%);
-            color: #3C4043;
-            padding: 12px;
-            text-align: center;
-            font-weight: 700;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .pricing-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-        
-        .pricing-card.featured:hover {
-            transform: scale(1.05) translateY(-8px);
-        }
-        
         .demo-widget {
             background: white;
-            border-radius: 20px;
-            padding: 40px;
+            border-radius: 16px;
+            padding: 32px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            border: 1px solid #DADCE0;
             max-width: 400px;
             width: 100%;
         }
@@ -189,36 +97,34 @@
         .input-field {
             width: 100%;
             padding: 16px 20px;
-            border: 2px solid #DADCE0;
-            border-radius: 12px;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
             font-size: 16px;
             transition: all 0.3s ease;
-            background: #F8F9FA;
         }
         
         .input-field:focus {
             outline: none;
-            border-color: #FBBC04;
-            background: white;
-            box-shadow: 0 0 0 4px rgba(251, 188, 4, 0.1);
+            border-color: #FFA500;
+            box-shadow: 0 0 0 4px rgba(255, 165, 0, 0.1);
         }
         
         .success-message {
-            background: #E8F5E8;
-            color: #34A853;
+            background: #ECFDF5;
+            color: #10B981;
             padding: 16px 20px;
-            border-radius: 12px;
-            border: 1px solid #34A853;
+            border-radius: 8px;
+            border: 1px solid #10B981;
             text-align: center;
             font-weight: 600;
         }
         
         .error-message {
-            background: #FFEAEA;
-            color: #EA4335;
+            background: #FEF2F2;
+            color: #EF4444;
             padding: 16px 20px;
-            border-radius: 12px;
-            border: 1px solid #EA4335;
+            border-radius: 8px;
+            border: 1px solid #EF4444;
             text-align: center;
             font-weight: 600;
         }
@@ -228,45 +134,16 @@
             pointer-events: none;
         }
         
-        .animate-pulse {
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: .5;
-            }
-        }
-        
-        .hero-gradient {
-            background: linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 100%);
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 32px;
-            margin: 48px 0;
-        }
-        
-        .stat-item {
-            text-align: center;
-            padding: 24px;
-        }
-        
         .stat-number {
             font-size: 48px;
             font-weight: 900;
-            color: #FBBC04;
+            color: #FFA500;
             display: block;
             line-height: 1;
         }
         
         .stat-label {
-            color: #5F6368;
+            color: #6B7280;
             font-weight: 600;
             margin-top: 8px;
             text-transform: uppercase;
@@ -274,89 +151,77 @@
             font-size: 14px;
         }
         
-        .testimonial-card {
+        .pricing-card {
             background: white;
             border-radius: 16px;
             padding: 32px;
-            border-left: 4px solid #FBBC04;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-            margin: 24px 0;
-        }
-        
-        .company-logo {
-            height: 32px;
-            width: auto;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
-        }
-        
-        .company-logo:hover {
-            opacity: 1;
-        }
-        
-        .integration-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 24px;
-            margin: 40px 0;
-            align-items: center;
-            justify-items: center;
-        }
-        
-        .cta-section {
-            background: linear-gradient(135deg, #FBBC04 0%, #F9AB00 100%);
-            color: #3C4043;
-            border-radius: 24px;
-            padding: 60px 40px;
-            text-align: center;
-            margin: 80px 0;
-        }
-        
-        .cta-section h2 {
-            font-size: 36px;
-            font-weight: 900;
-            margin-bottom: 24px;
-        }
-        
-        .cta-section p {
-            font-size: 18px;
-            margin-bottom: 32px;
-            opacity: 0.9;
-        }
-        
-        .cta-button {
-            background: white;
-            color: #3C4043;
-            padding: 16px 32px;
-            border-radius: 12px;
-            font-weight: 700;
-            text-decoration: none;
-            display: inline-block;
+            border: 2px solid #E5E7EB;
             transition: all 0.3s ease;
-            border: 2px solid white;
+            position: relative;
         }
         
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        .pricing-card.featured {
+            border-color: #FFA500;
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 165, 0, 0.2);
+        }
+        
+        .pricing-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #FFA500;
+            color: white;
+            padding: 8px 24px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+        
+        .comparison-table {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 16px 24px;
+            text-align: left;
+            border-bottom: 1px solid #F3F4F6;
+        }
+        
+        .comparison-table th {
+            background: #F9FAFB;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .comparison-table .traditional {
+            background: #FEF2F2;
+        }
+        
+        .comparison-table .rapidauth {
+            background: #F0FDF4;
         }
     </style>
 </head>
-<body class="bg-google-grey-bg font-google">
+<body class="bg-gray-50 font-sans">
     <!-- Navigation -->
-    <nav class="glass sticky top-0 z-50 border-b border-google-grey-border">
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
+            <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
-                    <a href="/">
-                        <img src="https://i.postimg.cc/Qx8C6tgQ/Chat-GPT-Image-Jun-19-2025-02-30-24-PM.png" alt="RapidAuth.pro" class="logo-img">
-                    </a>
+                    <img src="https://i.postimg.cc/Qx8C6tgQ/Chat-GPT-Image-Jun-19-2025-02-30-24-PM.png" alt="RapidAuth.pro" class="logo-img">
                 </div>
-                <div class="hidden md:flex items-center space-x-2">
-                    <a href="#demo" class="nav-link">Try Demo</a>
-                    <a href="#features" class="nav-link">Features</a>
-                    <a href="/info.html" class="nav-link">Info</a>
-                    <a href="#pricing" class="nav-link">Pricing</a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-600 hover:text-gray-900">Features</a>
+                    <a href="#pricing" class="text-gray-600 hover:text-gray-900">Pricing</a>
+                    <a href="#demo" class="text-gray-600 hover:text-gray-900">Demo</a>
                     <button class="btn-primary">
                         Get Started
                     </button>
@@ -366,53 +231,154 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-gradient py-24">
+    <section class="gradient-bg py-20">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h1 class="text-5xl md:text-6xl font-black text-gray-900 mb-6">
+                    Stop Losing Clients at<br>
+                    <span class="text-primary">The Login Page</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                    Enterprise passwordless authentication that converts 3x better than traditional login forms.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                    <button class="btn-primary text-lg px-8 py-4">
+                        🚀 Try Free Demo
+                    </button>
+                    <button class="btn-secondary text-lg px-8 py-4">
+                        📊 View Case Studies
+                    </button>
+                </div>
+                
+                <!-- Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-2xl mx-auto">
+                    <div class="text-center">
+                        <span class="stat-number">3x</span>
+                        <span class="stat-label">Higher Conversion</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="stat-number">99%</span>
+                        <span class="stat-label">Less Support Tickets</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="stat-number">2min</span>
+                        <span class="stat-label">Setup Time</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-gray-900 mb-8">
+                    The $2.1 Trillion Problem
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Every year, businesses lose $2.1 trillion in revenue due to poor authentication UX. 
+                    Your login form is where customers abandon their journey.
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Traditional Login Problems -->
+                <div class="bg-red-50 border-l-4 border-red-400 p-8 rounded-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="text-red-400 text-2xl mr-4">❌</div>
+                        <h3 class="text-2xl font-bold text-gray-900">What Happens With Traditional Login</h3>
+                    </div>
+                    <ul class="space-y-4 text-gray-700">
+                        <li class="flex items-start">
+                            <span class="text-red-400 mr-3">•</span>
+                            77% of users abandon signup due to password complexity
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-400 mr-3">•</span>
+                            Average 4.2 failed login attempts per user
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-400 mr-3">•</span>
+                            Password reset emails have 23% open rates
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-400 mr-3">•</span>
+                            Support tickets cost $15 each to resolve
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- RapidAuth Solution -->
+                <div class="bg-green-50 border-l-4 border-green-400 p-8 rounded-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="text-green-400 text-2xl mr-4">✅</div>
+                        <h3 class="text-2xl font-bold text-gray-900">What Happens With RapidAuth.pro</h3>
+                    </div>
+                    <ul class="space-y-4 text-gray-700">
+                        <li class="flex items-start">
+                            <span class="text-green-400 mr-3">•</span>
+                            One-click email authentication
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-400 mr-3">•</span>
+                            No passwords to remember or type
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-400 mr-3">•</span>
+                            98% email delivery success rate
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-400 mr-3">•</span>
+                            Zero password-related support tickets
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-gray-900 mb-8">
+                    Experience the Future of Login
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    See how simple authentication can be when you remove the friction. No passwords, no complexity, just results.
+                </p>
+            </div>
+            
             <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <!-- Left Column - Content -->
-                <div>
-                    <h1 class="text-5xl md:text-6xl font-black text-google-grey-dark mb-8 leading-tight">
-                        Enterprise <span class="gradient-text">Passwordless</span> Authentication
-                    </h1>
-                    <p class="text-xl text-google-grey mb-12 leading-relaxed">
-                        Boost conversions by 3x with frictionless email-based login. 
-                        No passwords, no friction, no security compromises.
-                    </p>
-                    
-                    <div class="flex flex-col sm:flex-row gap-4 mb-12">
-                        <button class="btn-primary text-lg px-8 py-4">
-                            🚀 Start Free Trial
-                        </button>
-                        <button class="btn-secondary text-lg px-8 py-4">
-                            📖 View Documentation
-                        </button>
+                <!-- Left Column - Benefits -->
+                <div class="space-y-8">
+                    <div class="flex items-start gap-6">
+                        <div class="bg-primary text-white rounded-full p-4 text-2xl">⚡</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Lightning Fast</h3>
+                            <p class="text-gray-600">Users authenticate in under 10 seconds. No typing complex passwords, no forgotten credentials.</p>
+                            <div class="text-sm text-green-600 font-semibold mt-2">✓ 3x faster than traditional login</div>
+                        </div>
                     </div>
                     
-                    <!-- Stats -->
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <span class="stat-number">3x</span>
-                            <span class="stat-label">Higher Conversion</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">99.9%</span>
-                            <span class="stat-label">Uptime SLA</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">5min</span>
-                            <span class="stat-label">Setup Time</span>
+                    <div class="flex items-start gap-6">
+                        <div class="bg-primary text-white rounded-full p-4 text-2xl">🔒</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Enterprise Secure</h3>
+                            <p class="text-gray-600">Bank-level security with JWT tokens, email verification, and enterprise compliance built-in.</p>
+                            <div class="text-sm text-green-600 font-semibold mt-2">✓ SOC 2 & GDPR compliant</div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Right Column - Demo Widget -->
-                <div class="flex justify-center lg:justify-end" id="demo">
+                <div class="flex justify-center" id="demo">
                     <div class="demo-widget">
-                        <!-- Logo Header -->
                         <div class="text-center mb-8">
-                            <img src="https://i.postimg.cc/Qx8C6tgQ/Chat-GPT-Image-Jun-19-2025-02-30-24-PM.png" alt="RapidAuth.pro" class="widget-logo mx-auto mb-4">
-                            <h3 class="text-2xl font-bold text-google-grey-dark mb-2">Welcome to RapidAuth.Pro</h3>
-                            <p class="text-google-grey font-medium">Please Sign In</p>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Try our live demo!</h3>
+                            <p class="text-gray-600">Enter your email to experience passwordless auth</p>
                         </div>
                         
                         <!-- Demo Form -->
@@ -432,7 +398,7 @@
                             >
                                 Send Magic Link ✨
                             </button>
-                            <p class="text-sm text-google-grey text-center">
+                            <p class="text-sm text-gray-500 text-center">
                                 No password required. Check your email for instant access.
                             </p>
                         </div>
@@ -481,8 +447,8 @@
                         <!-- Final Success -->
                         <div id="demo-complete" class="hidden text-center">
                             <div class="text-6xl mb-4">🎉</div>
-                            <h3 class="text-2xl font-bold text-google-grey-dark mb-4">Welcome!</h3>
-                            <p class="text-google-grey mb-6">You're now signed in. That's how easy passwordless auth can be!</p>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Welcome!</h3>
+                            <p class="text-gray-600 mb-6">You're now signed in. That's how easy passwordless auth can be!</p>
                             <button 
                                 id="demo-reset" 
                                 class="btn-secondary w-full py-3"
@@ -496,268 +462,311 @@
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="py-24 bg-white">
+    <!-- Statistics Section -->
+    <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="text-center mb-20">
-                <h2 class="text-4xl md:text-5xl font-black text-google-grey-dark mb-8">
-                    Why Choose <span class="gradient-text">RapidAuth.pro</span>?
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-gray-900 mb-8">
+                    🔍 Real Password Friction Statistics
                 </h2>
-                <p class="text-xl text-google-grey max-w-4xl mx-auto">
-                    Built for enterprise scale with developer-first APIs and enterprise-grade security.
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    The numbers don't lie. Password friction is costing your business real money. Here's the data that proves it.
+                </p>
+            </div>
+            
+            <!-- Key Stats -->
+            <div class="grid md:grid-cols-4 gap-8 mb-16">
+                <div class="text-center bg-red-50 p-8 rounded-lg">
+                    <div class="text-4xl font-black text-red-500 mb-2">77%</div>
+                    <div class="text-sm text-gray-600 font-semibold">Users abandon signup due to password complexity</div>
+                </div>
+                <div class="text-center bg-orange-50 p-8 rounded-lg">
+                    <div class="text-4xl font-black text-orange-500 mb-2">46%</div>
+                    <div class="text-sm text-gray-600 font-semibold">Forget passwords within 30 days</div>
+                </div>
+                <div class="text-center bg-red-50 p-8 rounded-lg">
+                    <div class="text-4xl font-black text-red-500 mb-2">28.6%</div>
+                    <div class="text-sm text-gray-600 font-semibold">Password reset email open rate</div>
+                </div>
+                <div class="text-center bg-green-50 p-8 rounded-lg">
+                    <div class="text-4xl font-black text-green-500 mb-2">3x</div>
+                    <div class="text-sm text-gray-600 font-semibold">Higher conversion with passwordless</div>
+                </div>
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="comparison-table">
+                <table class="w-full">
+                    <thead>
+                        <tr>
+                            <th class="text-left">Challenge</th>
+                            <th class="text-center traditional">Traditional Passwords & Login</th>
+                            <th class="text-center rapidauth">RapidAuth.pro</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-semibold">Password Requirements</td>
+                            <td class="text-center traditional">8+ chars, symbols, numbers, caps</td>
+                            <td class="text-center rapidauth">✅ No passwords needed</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">User Experience</td>
+                            <td class="text-center traditional">Complex, frustrating, slow</td>
+                            <td class="text-center rapidauth">✅ One-click authentication</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Forgot Password Flow</td>
+                            <td class="text-center traditional">Multi-step, 28% email open rate</td>
+                            <td class="text-center rapidauth">✅ No forgot password needed</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Support Tickets</td>
+                            <td class="text-center traditional">$15 per password reset ticket</td>
+                            <td class="text-center rapidauth">✅ Zero password tickets</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Conversion Rate</td>
+                            <td class="text-center traditional">23% abandon at signup</td>
+                            <td class="text-center rapidauth">✅ 3x higher completion</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Security Breaches</td>
+                            <td class="text-center traditional">81% due to weak passwords</td>
+                            <td class="text-center rapidauth">✅ No stored passwords</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- What This Means -->
+            <div class="mt-16 bg-primary text-white rounded-2xl p-12 text-center">
+                <h3 class="text-3xl font-bold mb-6">💡 What This Means for Your Business</h3>
+                <div class="grid md:grid-cols-3 gap-8 text-left">
+                    <div>
+                        <h4 class="font-bold mb-2">Revenue</h4>
+                        <p class="text-sm opacity-90">If you have 1,000 signups/month and lose 23% to password friction, that's 230 lost customers monthly.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold mb-2">Support</h4>
+                        <p class="text-sm opacity-90">Password reset tickets cost $15 each. 100 tickets/month = $1,500 in support costs.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold mb-2">Reputation</h4>
+                        <p class="text-sm opacity-90">Poor login experience creates negative first impressions that impact brand perception.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="py-20 bg-primary text-white">
+        <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-black mb-8">
+                Stop Losing Revenue to Password Friction
+            </h2>
+            <p class="text-xl mb-8 opacity-90">
+                Every day you delay implementing passwordless authentication is another day of lost customers, frustrated users, and expensive support tickets. The solution is simpler than you think.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="bg-white text-primary font-bold py-4 px-8 rounded-lg hover:bg-gray-100 transition-all">
+                    🚀 Try Free Demo
+                </button>
+                <button class="border-2 border-white text-white font-bold py-4 px-8 rounded-lg hover:bg-white hover:text-primary transition-all">
+                    📊 View Pricing
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enterprise Features -->
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-gray-900 mb-8">
+                    Built for Enterprise Scale
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Everything you need for secure, scalable, and friendly authentication
                 </p>
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="feature-card">
-                    <div class="text-4xl mb-6">🚀</div>
-                    <h3 class="text-xl font-bold text-google-grey-dark mb-4">3x Higher Conversions</h3>
-                    <p class="text-google-grey">Eliminate password friction. Users sign in with just their email - no complex passwords to remember or type.</p>
+                    <div class="text-4xl mb-6">🔐</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Enterprise Security</h3>
+                    <p class="text-gray-600">SOC 2 compliant with bank-level encryption, JWT tokens, and enterprise-grade infrastructure.</p>
                 </div>
                 
                 <div class="feature-card">
                     <div class="text-4xl mb-6">⚡</div>
-                    <h3 class="text-xl font-bold text-google-grey-dark mb-4">5-Minute Setup</h3>
-                    <p class="text-google-grey">Drop-in widget or full SDK integration. Works with React, Vue, Angular, WordPress, and any HTML site.</p>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Lightning Performance</h3>
+                    <p class="text-gray-600">Sub-100ms response times globally with 99.9% uptime SLA and intelligent email routing.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="text-4xl mb-6">🔐</div>
-                    <h3 class="text-xl font-bold text-google-grey-dark mb-4">Enterprise Security</h3>
-                    <p class="text-google-grey">SOC 2 compliant, GDPR ready, with advanced threat detection and real-time monitoring.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="text-4xl mb-6">🌍</div>
-                    <h3 class="text-xl font-bold text-google-grey-dark mb-4">Global Scale</h3>
-                    <p class="text-google-grey">99.9% uptime SLA with global CDN. Sub-100ms response times worldwide.</p>
+                    <div class="text-4xl mb-6">🎨</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">White-Label Ready</h3>
+                    <p class="text-gray-600">Complete customization with your branding, colors, and domain. Looks like it's built in-house.</p>
                 </div>
                 
                 <div class="feature-card">
                     <div class="text-4xl mb-6">📊</div>
-                    <h3 class="text-xl font-bold text-google-grey-dark mb-4">Real-time Analytics</h3>
-                    <p class="text-google-grey">Detailed insights into user flows, conversion rates, and security events with actionable recommendations.</p>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Advanced Analytics</h3>
+                    <p class="text-gray-600">Real-time insights into user flows, conversion rates, and authentication patterns.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="text-4xl mb-6">🛠️</div>
-                    <h3 class="text-xl font-bold text-google-grey-dark mb-4">Developer-First</h3>
-                    <p class="text-google-grey">Comprehensive APIs, SDKs, webhooks, and documentation. Built by developers, for developers.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Integration Section -->
-    <section class="py-24 bg-google-grey-bg">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-            <h2 class="text-4xl font-black text-google-grey-dark mb-8">
-                Integrates with Your <span class="gradient-text">Existing Stack</span>
-            </h2>
-            <p class="text-xl text-google-grey mb-12 max-w-3xl mx-auto">
-                Works seamlessly with popular frameworks, CMSs, and backend services.
-            </p>
-            
-            <div class="integration-grid">
-                <div class="text-6xl">⚛️</div>
-                <div class="text-6xl">🟢</div>
-                <div class="text-6xl">🅰️</div>
-                <div class="text-6xl">🔷</div>
-                <div class="text-6xl">🔥</div>
-                <div class="text-6xl">📘</div>
-            </div>
-            
-            <p class="text-google-grey mt-8">
-                React • Vue • Angular • WordPress • Supabase • Firebase • And many more...
-            </p>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="text-center mb-20">
-                <h2 class="text-4xl font-black text-google-grey-dark mb-8">
-                    Trusted by <span class="gradient-text">Enterprise Teams</span>
-                </h2>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="testimonial-card">
-                    <p class="text-google-grey-dark text-lg mb-6 italic">
-                        "RapidAuth.pro increased our signup conversion by 340%. The setup was incredibly simple, and our users love the passwordless experience."
-                    </p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-google-yellow rounded-full flex items-center justify-center text-xl font-bold">
-                            S
-                        </div>
-                        <div>
-                            <div class="font-semibold text-google-grey-dark">Sarah Chen</div>
-                            <div class="text-google-grey text-sm">CTO, TechFlow</div>
-                        </div>
-                    </div>
+                    <div class="text-4xl mb-6">🔗</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Flexible Integration</h3>
+                    <p class="text-gray-600">Works with React, Vue, Angular, WordPress, and any website. 5-minute setup guaranteed.</p>
                 </div>
                 
-                <div class="testimonial-card">
-                    <p class="text-google-grey-dark text-lg mb-6 italic">
-                        "Finally, an auth solution that doesn't compromise on security or user experience. The enterprise features and support are outstanding."
-                    </p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-tech-blue rounded-full flex items-center justify-center text-xl font-bold text-white">
-                            M
-                        </div>
-                        <div>
-                            <div class="font-semibold text-google-grey-dark">Marcus Rodriguez</div>
-                            <div class="text-google-grey text-sm">Head of Security, DataCorp</div>
-                        </div>
-                    </div>
+                <div class="feature-card">
+                    <div class="text-4xl mb-6">🛡️</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Fraud Protection</h3>
+                    <p class="text-gray-600">Built-in rate limiting, bot detection, and abuse prevention to keep your platform secure.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Pricing Section -->
-    <section id="pricing" class="py-24 bg-google-grey-bg">
+    <section id="pricing" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="text-center mb-20">
-                <h2 class="text-4xl md:text-5xl font-black text-google-grey-dark mb-8">
-                    Simple, <span class="gradient-text">Transparent</span> Pricing
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-gray-900 mb-8">
+                    Simple, Transparent Pricing
                 </h2>
-                <p class="text-xl text-google-grey max-w-3xl mx-auto">
-                    Start free, scale as you grow. No hidden fees, no surprises.
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    No hidden fees. No surprises. Scale as you grow with plans that make sense.
                 </p>
             </div>
             
-            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <!-- Free Tier -->
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Starter -->
                 <div class="pricing-card">
-                    <h3 class="text-2xl font-bold text-google-grey-dark mb-4">Starter</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Starter</h3>
                     <div class="mb-6">
-                        <span class="text-4xl font-black text-google-grey-dark">Free</span>
-                        <span class="text-google-grey">/month</span>
+                        <span class="text-4xl font-black text-gray-900">€49</span>
+                        <span class="text-gray-600">/month</span>
                     </div>
-                    <ul class="space-y-4 mb-8 text-google-grey">
+                    <ul class="space-y-3 mb-8 text-gray-600">
                         <li class="flex items-center gap-3">
-                            <span class="text-tech-green">✓</span>
-                            1,000 monthly authentications
+                            <span class="text-green-500">✓</span>
+                            Up to 1,000 authentications
                         </li>
                         <li class="flex items-center gap-3">
-                            <span class="text-tech-green">✓</span>
-                            Basic email support
+                            <span class="text-green-500">✓</span>
+                            Email support
                         </li>
                         <li class="flex items-center gap-3">
-                            <span class="text-tech-green">✓</span>
+                            <span class="text-green-500">✓</span>
+                            Basic analytics
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-green-500">✓</span>
                             Standard integrations
                         </li>
-                        <li class="flex items-center gap-3">
-                            <span class="text-tech-green">✓</span>
-                            Community support
-                        </li>
                     </ul>
-                    <button class="btn-secondary w-full py-4 text-lg">
-                        Get Started Free
+                    <button class="btn-secondary w-full py-4">
+                        Get Started
                     </button>
                 </div>
                 
-                <!-- Professional Tier -->
+                <!-- Professional -->
                 <div class="pricing-card featured">
-                    <h3 class="text-2xl font-bold text-google-grey-dark mb-4 mt-8">Professional</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Professional</h3>
                     <div class="mb-6">
-                        <span class="text-4xl font-black text-google-grey-dark">€149</span>
-                        <span class="text-google-grey">/month</span>
+                        <span class="text-4xl font-black text-gray-900">€149</span>
+                        <span class="text-gray-600">/month</span>
                     </div>
-                    <ul class="space-y-4 mb-8 text-google-grey">
+                    <ul class="space-y-3 mb-8 text-gray-600">
                         <li class="flex items-center gap-3">
-                            <span class="text-tech-green">✓</span>
-                            10,000 monthly authentications
+                            <span class="text-green-500">✓</span>
+                            Up to 10,000 authentications
                         </li>
                         <li class="flex items-center gap-3">
-                            <span class="text-tech-green">✓</span>
-                            Priority email & chat support
+                            <span class="text-green-500">✓</span>
+                            Priority support
                         </li>
                         <li class="flex items-center gap-3">
-                            <span class="text-tech-green">✓</span>
+                            <span class="text-green-500">✓</span>
                             Advanced analytics
                         </li>
                         <li class="flex items-center gap-3">
-                            <span class="text-tech-green">✓</span>
+                            <span class="text-green-500">✓</span>
                             Custom branding
                         </li>
                         <li class="flex items-center gap-3">
-                            <span class="text-tech-green">✓</span>
+                            <span class="text-green-500">✓</span>
                             99.9% uptime SLA
                         </li>
                     </ul>
-                    <button class="btn-primary w-full py-4 text-lg">
+                    <button class="btn-primary w-full py-4">
                         Start Professional
                     </button>
                 </div>
                 
-                <!-- Enterprise Tier -->
+                <!-- Enterprise -->
                 <div class="pricing-card">
-                    <h3 class="text-2xl font-bold text-google-grey-dark mb-4">Enterprise</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Enterprise</h3>
                     <div class="mb-6">
-                        <span class="text-4xl font-black text-google-grey-dark">Custom</span>
-                        <span class="text-google-grey">/month</span>
+                        <span class="text-4xl font-black text-gray-900">Custom</span>
                     </div>
-                    <ul class="space-y-4 mb-8 text-google-grey">
+                    <ul class="space-y-3 mb-8 text-gray-600">
                         <li class="flex items-center gap-3">
-                            <span class="text-tech-green">✓</span>
+                            <span class="text-green-500">✓</span>
                             Unlimited authentications
                         </li>
                         <li class="flex items-center gap-3">
-                            <span class="text-tech-green">✓</span>
-                            Dedicated success manager
+                            <span class="text-green-500">✓</span>
+                            Dedicated support
                         </li>
                         <li class="flex items-center gap-3">
-                            <span class="text-tech-green">✓</span>
+                            <span class="text-green-500">✓</span>
                             Custom integrations
                         </li>
                         <li class="flex items-center gap-3">
-                            <span class="text-tech-green">✓</span>
+                            <span class="text-green-500">✓</span>
                             On-premise deployment
                         </li>
                         <li class="flex items-center gap-3">
-                            <span class="text-tech-green">✓</span>
+                            <span class="text-green-500">✓</span>
                             99.99% uptime SLA
                         </li>
                     </ul>
-                    <button class="btn-secondary w-full py-4 text-lg">
+                    <button class="btn-secondary w-full py-4">
                         Contact Sales
                     </button>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-24 bg-white">
-        <div class="max-w-4xl mx-auto px-6 lg:px-8">
-            <div class="cta-section">
-                <h2>Ready to 3x Your Conversions?</h2>
-                <p>Join thousands of companies using RapidAuth.pro for passwordless authentication.</p>
-                <a href="#demo" class="cta-button">Start Free Trial →</a>
+            
+            <div class="text-center mt-12">
+                <p class="text-gray-600">
+                    🔍 Still have questions? <a href="#" class="text-primary font-semibold">View detailed pricing breakdown</a>
+                </p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-google-grey-dark text-white py-16">
+    <footer class="bg-gray-900 text-white py-16">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="text-center">
                 <div class="flex items-center justify-center mb-6">
                     <img src="https://i.postimg.cc/Qx8C6tgQ/Chat-GPT-Image-Jun-19-2025-02-30-24-PM.png" alt="RapidAuth.pro" class="logo-img">
                 </div>
-                <p class="text-google-grey-light mb-6 text-lg">
+                <p class="text-gray-400 mb-6 text-lg">
                     Enterprise passwordless authentication that actually works.
                 </p>
                 <div class="flex justify-center gap-8 mb-8">
-                    <a href="#demo" class="text-google-grey-light hover:text-white transition-colors">Demo</a>
-                    <a href="#features" class="text-google-grey-light hover:text-white transition-colors">Features</a>
-                    <a href="/info.html" class="text-google-grey-light hover:text-white transition-colors">Info</a>
-                    <a href="#pricing" class="text-google-grey-light hover:text-white transition-colors">Pricing</a>
+                    <a href="#features" class="text-gray-400 hover:text-white transition-colors">Features</a>
+                    <a href="#pricing" class="text-gray-400 hover:text-white transition-colors">Pricing</a>
+                    <a href="#demo" class="text-gray-400 hover:text-white transition-colors">Demo</a>
                 </div>
-                <p class="text-sm text-google-grey-light">
+                <p class="text-sm text-gray-500">
                     © 2025 RapidAuth.pro. All rights reserved.
                 </p>
             </div>
