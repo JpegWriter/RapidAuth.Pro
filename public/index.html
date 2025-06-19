@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RapidAuth.pro - Say Goodbye to Forgotten Passwords</title>
+    <title>RapidAuth.pro - Stop Losing Clients at the Login Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -115,8 +115,8 @@
             z-index: 3;
         }
         
-        /* Sales info box matching widget style */
-        .sales-info-box {
+        /* Demo info box matching widget style */
+        .demo-info-box {
             background: white;
             border-radius: 16px;
             padding: 32px;
@@ -129,7 +129,14 @@
             min-height: 600px;
         }
         
-        .sales-info-box h3 {
+        .demo-info-box img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .demo-info-box h3 {
             font-size: 24px;
             font-weight: 600;
             color: #111827;
@@ -139,14 +146,14 @@
             gap: 12px;
         }
         
-        .sales-info-box p {
+        .demo-info-box p {
             font-size: 16px;
             line-height: 1.6;
             color: #374151;
             margin-bottom: 16px;
         }
         
-        .sales-info-box .highlight {
+        .demo-info-box .highlight {
             font-size: 18px;
             font-weight: 500;
             color: #111827;
@@ -372,6 +379,63 @@
             width: auto;
             border-radius: 8px;
         }
+
+        /* Friction table styles */
+        .friction-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+        }
+        
+        .friction-table th,
+        .friction-table td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .friction-table th {
+            background: #f9fafb;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .friction-table td:first-child {
+            font-weight: 500;
+            color: #111827;
+        }
+        
+        .friction-table td:last-child {
+            color: #dc2626;
+        }
+        
+        .fix-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+        }
+        
+        .fix-table th,
+        .fix-table td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .fix-table th {
+            background: #f0fdf4;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .fix-table td:first-child {
+            font-weight: 500;
+            color: #111827;
+        }
+        
+        .fix-table td:last-child {
+            color: #059669;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -416,30 +480,33 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center animate-fade-in-up">
                     <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-                        Say Goodbye to<br>
-                        <span class="text-accent-500">Forgotten Passwords.</span>
+                        Stop Losing Clients at<br>
+                        <span class="text-accent-500">the Login Page.</span>
                     </h1>
                     <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold mb-12 text-gray-100">
-                        Say Hello to Clients Who Actually Log In.
+                        If they can't log in, they won't stick around.
                     </h2>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Content Section (moved from hero) -->
+    <!-- Content Section -->
     <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center animate-fade-in">
                 <div class="max-w-4xl mx-auto mb-12">
                     <p class="text-lg md:text-xl text-gray-700 mb-6 leading-relaxed">
-                        They clicked your email.<br>
+                        They clicked your ad.<br>
                         They opened your app.<br>
-                        And then... they hit a login wall.
+                        They were ready to buy…
                     </p>
                     <p class="text-xl md:text-2xl font-medium mb-8 text-gray-800">
-                        Don't lose users to friction.<br>
-                        <strong>RapidAuth.pro</strong> makes onboarding effortless with passwordless, 2FA-secure sign-in flows that work — every time.
+                        But your login flow killed the deal.
+                    </p>
+                    <p class="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
+                        <strong>RapidAuth.pro</strong> replaces password pain with a fast, passwordless sign-in flow that just works.<br>
+                        No passwords. No friction. No lost conversions.
                     </p>
                 </div>
 
@@ -447,7 +514,7 @@
                     <button onclick="scrollToDemo()" class="bg-accent-500 hover:bg-accent-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all hover-lift animate-bounce-gentle">
                         ✅ Try It Live ↓
                     </button>
-                    <p class="text-gray-600 text-sm">🧪 No passwords. No delays. No drop-off.</p>
+                    <p class="text-gray-600 text-sm">🧪 Turn more sign-ups into customers — instantly.</p>
                 </div>
             </div>
         </div>
@@ -458,17 +525,21 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 animate-fade-in">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                    🧨 The Real Cost of Bad Login Flows
+                    ❌ The Real Cost of Bad Login UX
                 </h2>
                 <blockquote class="text-xl md:text-2xl text-gray-600 italic mb-8">
-                    "We just never finished onboarding. I couldn't log in."
+                    "I was ready to sign up, but I couldn't log in."
                 </blockquote>
-                <p class="text-lg text-gray-700 max-w-3xl mx-auto">
-                    If you've heard this, you're not alone.<br>
-                    Most users don't hate your product — they hate passwords.<br>
-                    The endless reset loops. The "wrong format" errors.<br>
-                    The forgotten logins, browser lockouts, and broken flows.
-                </p>
+                <div class="max-w-4xl mx-auto">
+                    <p class="text-lg text-gray-700 mb-6">
+                        You don't lose clients because your product is bad.<br>
+                        You lose them because your login experience is.
+                    </p>
+                    <p class="text-lg text-gray-700 mb-8">
+                        When logging in feels like solving a puzzle, users leave.<br>
+                        And when they leave, they don't come back.
+                    </p>
+                </div>
             </div>
 
             <div class="grid md:grid-cols-2 gap-12 mb-16">
@@ -477,87 +548,88 @@
                     <h3 class="text-2xl font-bold text-red-800 mb-6 flex items-center">
                         💔 What Happens When Login Gets in the Way
                     </h3>
-                    <div class="space-y-4">
-                        <div class="flex items-start space-x-3">
-                            <span class="text-red-500 font-bold">❌</span>
-                            <div>
-                                <strong class="text-red-700">Weak password rejected</strong>
-                                <p class="text-red-600">→ Abandon sign-up</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-3">
-                            <span class="text-red-500 font-bold">❌</span>
-                            <div>
-                                <strong class="text-red-700">Email verification lost in inbox</strong>
-                                <p class="text-red-600">→ Never finish onboarding</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-3">
-                            <span class="text-red-500 font-bold">❌</span>
-                            <div>
-                                <strong class="text-red-700">Forgot password (again)</strong>
-                                <p class="text-red-600">→ Ghost your product</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-3">
-                            <span class="text-red-500 font-bold">❌</span>
-                            <div>
-                                <strong class="text-red-700">Login requires 2 devices</strong>
-                                <p class="text-red-600">→ Rage quit on mobile</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-3">
-                            <span class="text-red-500 font-bold">❌</span>
-                            <div>
-                                <strong class="text-red-700">"Code expired" after 30 seconds</strong>
-                                <p class="text-red-600">→ Close tab and move on</p>
-                            </div>
-                        </div>
-                    </div>
+                    
+                    <table class="friction-table">
+                        <thead>
+                            <tr>
+                                <th>Friction Point</th>
+                                <th>What Users Do</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Weak password rejected</td>
+                                <td>Abandon the signup form</td>
+                            </tr>
+                            <tr>
+                                <td>Email verification lost</td>
+                                <td>Never finish onboarding</td>
+                            </tr>
+                            <tr>
+                                <td>Forgot password (again)</td>
+                                <td>Ghost your platform</td>
+                            </tr>
+                            <tr>
+                                <td>Login needs 2 devices</td>
+                                <td>Rage quit on mobile</td>
+                            </tr>
+                            <tr>
+                                <td>"Code expired" in 30 seconds</td>
+                                <td>Close tab, bounce, forget you</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
                 <!-- Solution Side -->
                 <div class="bg-green-50 p-8 rounded-2xl border-l-4 border-green-500">
                     <h3 class="text-2xl font-bold text-green-800 mb-6 flex items-center">
-                        ✅ What Happens When You Use RapidAuth.pro
+                        ✅ What Happens With RapidAuth.pro
                     </h3>
-                    <div class="space-y-4">
-                        <div class="flex items-start space-x-3">
-                            <span class="text-green-500 font-bold">✅</span>
-                            <div>
-                                <strong class="text-green-700">One-click login via magic link</strong>
-                                <p class="text-green-600">→ 3x more activations</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-3">
-                            <span class="text-green-500 font-bold">✅</span>
-                            <div>
-                                <strong class="text-green-700">Email-based 2FA, not SMS</strong>
-                                <p class="text-green-600">→ GDPR-safe, no phone needed</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-3">
-                            <span class="text-green-500 font-bold">✅</span>
-                            <div>
-                                <strong class="text-green-700">Session trust with device memory</strong>
-                                <p class="text-green-600">→ Smooth repeat logins</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-3">
-                            <span class="text-green-500 font-bold">✅</span>
-                            <div>
-                                <strong class="text-green-700">No passwords, ever</strong>
-                                <p class="text-green-600">→ Users onboard and stay</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-3">
-                            <span class="text-green-500 font-bold">✅</span>
-                            <div>
-                                <strong class="text-green-700">10-minute code validity</strong>
-                                <p class="text-green-600">→ No rush, no stress</p>
-                            </div>
-                        </div>
-                    </div>
+                    
+                    <table class="fix-table">
+                        <thead>
+                            <tr>
+                                <th>Fix</th>
+                                <th>What Happens</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>One-click login via magic link</td>
+                                <td>3× more completions</td>
+                            </tr>
+                            <tr>
+                                <td>Email-based 2FA, not SMS</td>
+                                <td>No phone required, GDPR-safe</td>
+                            </tr>
+                            <tr>
+                                <td>Device trust + no re-logins</td>
+                                <td>Seamless user return</td>
+                            </tr>
+                            <tr>
+                                <td>No passwords. Ever.</td>
+                                <td>Higher activation. Less churn.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Message to Founders -->
+            <div class="bg-blue-50 p-8 rounded-2xl border-l-4 border-blue-500 max-w-4xl mx-auto">
+                <h3 class="text-2xl font-bold text-blue-800 mb-6">
+                    💬 A Message to Founders & Product Owners
+                </h3>
+                <div class="text-lg text-blue-700 space-y-4">
+                    <p>You paid to acquire that lead.</p>
+                    <p>They were interested.</p>
+                    <p>They tried to log in.</p>
+                    <p><strong>You lost them.</strong></p>
+                    <p class="mt-6 pt-4 border-t border-blue-200">
+                        Let's fix that. RapidAuth isn't just about better UX —<br>
+                        it's about saving revenue you're silently bleeding out of your funnel every day.
+                    </p>
                 </div>
             </div>
         </div>
@@ -577,21 +649,19 @@
             </div>
 
             <div class="demo-container">
-                <!-- Sales Info Box -->
-                <div class="sales-info-box">
-                    <h3>👋 Welcome to Passwordless Auth</h3>
-                    <p>No more forgotten passwords.</p>
-                    <p>No more frustrating resets.</p>
-                    <p>No more "password must include a dragon emoji" rules.</p>
+                <!-- Demo Info Box with Image -->
+                <div class="demo-info-box">
+                    <img src="https://i.postimg.cc/Gm95xFHZ/Chat-GPT-Image-Jun-19-2025-02-45-50-PM.png" alt="Passwordless Authentication Demo">
+                    <h3>🚀 Experience Passwordless Auth</h3>
+                    <p>See how smooth login can be when you remove all the friction.</p>
+                    <p>No passwords to remember.</p>
+                    <p>No complex requirements.</p>
+                    <p>No forgotten login loops.</p>
                     
                     <div class="highlight">
-                        Here, you can't mistype, reuse, or forget your login —<br>
-                        because no password is allowed.
+                        Just enter your email, get a code, and you're in.<br>
+                        It's that simple.
                     </div>
-                    
-                    <p style="text-align: center; font-size: 20px; font-weight: 600; color: #111827; margin-top: 24px;">
-                        Just a code. Just a click. Just in.
-                    </p>
                 </div>
 
                 <!-- Auth Widget -->
