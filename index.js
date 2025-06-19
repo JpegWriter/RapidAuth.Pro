@@ -73,7 +73,7 @@ const otpLimiter = rateLimit({
 });
 
 // Mail transport
-const transporter = nodemailer.createTransport({
+const transporter = nodemailer.createTransporter({
   host: process.env.SMTP_HOST,
   port: Number(process.env.SMTP_PORT || 587),
   secure: process.env.SMTP_SECURE === 'true',
@@ -89,6 +89,11 @@ const otpHtmlTemplate = hbs.compile(htmlTemplateSrc);
 const otpTextTemplate = hbs.compile(textTemplateSrc);
 
 const generateCode = () => Math.floor(100000 + Math.random() * 900000).toString();
+
+// Serve homepage
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', branding });
