@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RapidAuth.pro - Say Goodbye to Forgotten Passwords</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a'
+                        },
+                        accent: {
+                            500: '#f59e0b',
+                            600: '#d97706'
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.6s ease-out',
+                        'fade-in': 'fadeIn 0.8s ease-out',
+                        'pulse-slow': 'pulse 3s infinite',
+                        'bounce-gentle': 'bounceGentle 2s infinite'
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        bounceGentle: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="/public/css/theme.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <img src="/public/logo.png" alt="RapidAuth.pro" class="h-8 w-auto">
+                    <span class="ml-3 text-xl font-bold text-gray-900">RapidAuth.pro</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#demo" class="text-gray-600 hover:text-primary-600 transition-colors">Try Demo</a>
+                    <a href="#features" class="text-gray-600 hover:text-primary-600 transition-colors">Features</a>
+                    <a href="#pricing" class="text-gray-600 hover:text-primary-600 transition-colors">Pricing</a>
+                    <button class="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors">
+                        Get Started
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-20 lg:py-32 relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center animate-fade-in-up">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+                    Say Goodbye to<br>
+                    <span class="text-accent-500">Forgotten Passwords.</span>
+                </h1>
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold mb-8 text-gray-100">
+                    Say Hello to Clients Who Actually Log In.
+                </h2>
+                
+                <div class="max-w-4xl mx-auto mb-12">
+                    <p class="text-lg md:text-xl text-gray-200 mb-6 leading-relaxed">
+                        They clicked your email.<br>
+                        They opened your app.<br>
+                        And then... they hit a login wall.
+                    </p>
+                    <p class="text-xl md:text-2xl font-medium mb-8">
+                        Don't lose users to friction.<br>
+                        <strong>RapidAuth.pro</strong> makes onboarding effortless with passwordless, 2FA-secure sign-in flows that work — every time.
+                    </p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+                    <button onclick="scrollToDemo()" class="bg-accent-500 hover:bg-accent-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all hover-lift animate-bounce-gentle">
+                        ✅ Try It Live ↓
+                    </button>
+                    <p class="text-gray-300 text-sm">🧪 No passwords. No delays. No drop-off.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pain Point Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                    🧨 The Real Cost of Bad Login Flows
+                </h2>
+                <blockquote class="text-xl md:text-2xl text-gray-600 italic mb-8">
+                    "We just never finished onboarding. I couldn't log in."
+                </blockquote>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto">
+                    If you've heard this, you're not alone.<br>
+                    Most users don't hate your product — they hate passwords.<br>
+                    The endless reset loops. The "wrong format" errors.<br>
+                    The forgotten logins, browser lockouts, and broken flows.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 mb-16">
+                <!-- Problem Side -->
+                <div class="bg-red-50 p-8 rounded-2xl border-l-4 border-red-500">
+                    <h3 class="text-2xl font-bold text-red-800 mb-6 flex items-center">
+                        💔 What Happens When Login Gets in the Way
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <span class="text-red-500 font-bold">❌</span>
+                            <div>
+                                <strong class="text-red-700">Weak password rejected</strong>
+                                <p class="text-red-600">→ Abandon sign-up</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="text-red-500 font-bold">❌</span>
+                            <div>
+                                <strong class="text-red-700">Email verification lost in inbox</strong>
+                                <p class="text-red-600">→ Never finish onboarding</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="text-red-500 font-bold">❌</span>
+                            <div>
+                                <strong class="text-red-700">Forgot password (again)</strong>
+                                <p class="text-red-600">→ Ghost your product</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="text-red-500 font-bold">❌</span>
+                            <div>
+                                <strong class="text-red-700">Login requires 2 devices</strong>
+                                <p class="text-red-600">→ Rage quit on mobile</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="text-red-500 font-bold">❌</span>
+                            <div>
+                                <strong class="text-red-700">"Code expired" after 30 seconds</strong>
+                                <p class="text-red-600">→ Close tab and move on</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Solution Side -->
+                <div class="bg-green-50 p-8 rounded-2xl border-l-4 border-green-500">
+                    <h3 class="text-2xl font-bold text-green-800 mb-6 flex items-center">
+                        ✅ What Happens When You Use RapidAuth.pro
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <span class="text-green-500 font-bold">✅</span>
+                            <div>
+                                <strong class="text-green-700">One-click login via magic link</strong>
+                                <p class="text-green-600">→ 3x more activations</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="text-green-500 font-bold">✅</span>
+                            <div>
+                                <strong class="text-green-700">Email-based 2FA, not SMS</strong>
+                                <p class="text-green-600">→ GDPR-safe, no phone needed</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="text-green-500 font-bold">✅</span>
+                            <div>
+                                <strong class="text-green-700">Session trust with device memory</strong>
+                                <p class="text-green-600">→ Smooth repeat logins</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="text-green-500 font-bold">✅</span>
+                            <div>
+                                <strong class="text-green-700">No passwords, ever</strong>
+                                <p class="text-green-600">→ Users onboard and stay</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="text-green-500 font-bold">✅</span>
+                            <div>
+                                <strong class="text-green-700">10-minute code validity</strong>
+                                <p class="text-green-600">→ No rush, no stress</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Demo Section -->
+    <section id="demo" class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    🚀 Try RapidAuth.pro Live
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Experience the smooth, passwordless login flow your users will love. 
+                    Enter your email below and see how effortless authentication can be.
+                </p>
+            </div>
+
+            <div class="max-w-md mx-auto">
+                <div class="bg-white rounded-2xl shadow-xl p-8 hover-lift">
+                    <div id="login-form">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-6 text-center">
+                            Passwordless Login Demo
+                        </h3>
+                        
+                        <div class="mb-6">
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                                Email Address
+                            </label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                                placeholder="you@company.com"
+                                required
+                            >
+                        </div>
+
+                        <button 
+                            onclick="requestCode()" 
+                            id="request-btn"
+                            class="w-full bg-primary-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-primary-700 transition-colors mb-4"
+                        >
+                            Send Magic Code ✨
+                        </button>
+
+                        <p class="text-sm text-gray-500 text-center">
+                            No password required. We'll send a secure code to your email.
+                        </p>
+                    </div>
+
+                    <div id="verify-form" class="hidden">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4 text-center">
+                            Check Your Email 📧
+                        </h3>
+                        <p class="text-gray-600 mb-6 text-center">
+                            We sent a 6-digit code to <span id="sent-email" class="font-semibold"></span>
+                        </p>
+                        
+                        <div class="mb-6">
+                            <label for="code" class="block text-sm font-medium text-gray-700 mb-2">
+                                Verification Code
+                            </label>
+                            <input 
+                                type="text" 
+                                id="code" 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all text-center text-2xl font-mono"
+                                placeholder="123456"
+                                maxlength="6"
+                                required
+                            >
+                        </div>
+
+                        <button 
+                            onclick="verifyCode()" 
+                            id="verify-btn"
+                            class="w-full bg-green-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-green-700 transition-colors mb-4"
+                        >
+                            Verify & Login 🔓
+                        </button>
+
+                        <button 
+                            onclick="resetForm()" 
+                            class="w-full text-gray-500 hover:text-gray-700 transition-colors"
+                        >
+                            ← Back to email
+                        </button>
+                    </div>
+
+                    <div id="success-form" class="hidden text-center">
+                        <div class="text-6xl mb-4">🎉</div>
+                        <h3 class="text-2xl font-semibold text-green-600 mb-4">
+                            Welcome! You're logged in.
+                        </h3>
+                        <p class="text-gray-600 mb-6">
+                            That was easy, wasn't it? No passwords, no friction, just smooth authentication.
+                        </p>
+                        <button 
+                            onclick="resetForm()" 
+                            class="bg-primary-600 text-white py-2 px-6 rounded-lg hover:bg-primary-700 transition-colors"
+                        >
+                            Try Again
+                        </button>
+                    </div>
+
+                    <div id="loading" class="hidden text-center py-8">
+                        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
+                        <p class="text-gray-600">Processing...</p>
+                    </div>
+
+                    <div id="error-message" class="hidden mt-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+                        <p class="text-red-700 text-sm"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Built for Modern Applications
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Everything you need for secure, user-friendly authentication
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center p-6 rounded-xl hover-lift">
+                    <div class="text-4xl mb-4">🔐</div>
+                    <h3 class="text-xl font-semibold mb-3">Enterprise Security</h3>
+                    <p class="text-gray-600">JWT tokens, bcrypt hashing, rate limiting, and Redis session storage</p>
+                </div>
+                <div class="text-center p-6 rounded-xl hover-lift">
+                    <div class="text-4xl mb-4">⚡</div>
+                    <h3 class="text-xl font-semibold mb-3">Lightning Fast</h3>
+                    <p class="text-gray-600">Minimal Express.js API with optimized email delivery and caching</p>
+                </div>
+                <div class="text-center p-6 rounded-xl hover-lift">
+                    <div class="text-4xl mb-4">🎨</div>
+                    <h3 class="text-xl font-semibold mb-3">White-Label Ready</h3>
+                    <p class="text-gray-600">Customizable branding, email templates, and styling options</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex items-center justify-center mb-4">
+                    <img src="/public/logo.png" alt="RapidAuth.pro" class="h-8 w-auto">
+                    <span class="ml-3 text-xl font-bold">RapidAuth.pro</span>
+                </div>
+                <p class="text-gray-400 mb-4">
+                    Passwordless authentication that actually works.
+                </p>
+                <p class="text-sm text-gray-500">
+                    © 2025 RapidAuth.pro. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentEmail = '';
+
+        function scrollToDemo() {
+            document.getElementById('demo').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        function showLoading() {
+            document.getElementById('loading').classList.remove('hidden');
+            document.getElementById('login-form').classList.add('hidden');
+            document.getElementById('verify-form').classList.add('hidden');
+            document.getElementById('success-form').classList.add('hidden');
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').classList.add('hidden');
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('error-message');
+            errorDiv.querySelector('p').textContent = message;
+            errorDiv.classList.remove('hidden');
+            setTimeout(() => {
+                errorDiv.classList.add('hidden');
+            }, 5000);
+        }
+
+        async function requestCode() {
+            const email = document.getElementById('email').value;
+            if (!email) {
+                showError('Please enter your email address');
+                return;
+            }
+
+            currentEmail = email;
+            showLoading();
+
+            try {
+                const response = await fetch('/auth/request-code', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email })
+                });
+
+                const data = await response.json();
+                hideLoading();
+
+                if (response.ok) {
+                    document.getElementById('sent-email').textContent = email;
+                    document.getElementById('login-form').classList.add('hidden');
+                    document.getElementById('verify-form').classList.remove('hidden');
+                } else {
+                    showError(data.error || 'Failed to send code');
+                    document.getElementById('login-form').classList.remove('hidden');
+                }
+            } catch (error) {
+                hideLoading();
+                showError('Network error. Please try again.');
+                document.getElementById('login-form').classList.remove('hidden');
+            }
+        }
+
+        async function verifyCode() {
+            const code = document.getElementById('code').value;
+            if (!code) {
+                showError('Please enter the verification code');
+                return;
+            }
+
+            showLoading();
+
+            try {
+                const response = await fetch('/auth/verify-code', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        email: currentEmail, 
+                        code 
+                    })
+                });
+
+                const data = await response.json();
+                hideLoading();
+
+                if (response.ok) {
+                    // Store the token (in a real app, you'd handle this more securely)
+                    localStorage.setItem('authToken', data.token);
+                    
+                    document.getElementById('verify-form').classList.add('hidden');
+                    document.getElementById('success-form').classList.remove('hidden');
+                } else {
+                    showError(data.error || 'Invalid code');
+                    document.getElementById('verify-form').classList.remove('hidden');
+                }
+            } catch (error) {
+                hideLoading();
+                showError('Network error. Please try again.');
+                document.getElementById('verify-form').classList.remove('hidden');
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('email').value = '';
+            document.getElementById('code').value = '';
+            currentEmail = '';
+            
+            document.getElementById('login-form').classList.remove('hidden');
+            document.getElementById('verify-form').classList.add('hidden');
+            document.getElementById('success-form').classList.add('hidden');
+            document.getElementById('error-message').classList.add('hidden');
+        }
+
+        // Auto-focus on code input when it becomes visible
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.target.id === 'verify-form' && !mutation.target.classList.contains('hidden')) {
+                    setTimeout(() => {
+                        document.getElementById('code').focus();
+                    }, 100);
+                }
+            });
+        });
+
+        observer.observe(document.getElementById('verify-form'), {
+            attributes: true,
+            attributeFilter: ['class']
+        });
+
+        // Auto-submit code when 6 digits are entered
+        document.getElementById('code').addEventListener('input', (e) => {
+            if (e.target.value.length === 6) {
+                setTimeout(verifyCode, 500);
+            }
+        });
+
+        // Enter key handlers
+        document.getElementById('email').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') requestCode();
+        });
+
+        document.getElementById('code').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') verifyCode();
+        });
+    </script>
+</body>
+</html>
