@@ -64,114 +64,197 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
         
-        /* Social login widget styling */
-        .social-login-widget {
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 8px;
-            padding: 24px;
-            max-width: 400px;
+        /* JpegtoVideo style login widget */
+        .jpegto-widget {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 500px;
             margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
         
-        .social-btn {
+        .widget-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        
+        .widget-tabs {
             display: flex;
-            align-items: center;
             justify-content: center;
-            width: 100%;
-            padding: 12px 16px;
-            border-radius: 6px;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            margin-bottom: 12px;
+            gap: 24px;
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e5e7eb;
         }
         
-        .social-btn-twitter {
-            background: #1da1f2;
-            color: white;
-        }
-        
-        .social-btn-twitter:hover {
-            background: #1a91da;
-            color: white;
-        }
-        
-        .social-btn-facebook {
-            background: #4267b2;
-            color: white;
-        }
-        
-        .social-btn-facebook:hover {
-            background: #365899;
-            color: white;
-        }
-        
-        .form-input {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1px solid #ced4da;
-            border-radius: 6px;
-            font-size: 14px;
-            transition: border-color 0.2s ease;
-            margin-bottom: 12px;
-            background: #fff5f5;
-        }
-        
-        .form-input:focus {
-            outline: none;
-            border-color: #80bdff;
-            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-        }
-        
-        .form-input::placeholder {
-            color: #6c757d;
-        }
-        
-        .checkbox-container {
+        .widget-tab {
             display: flex;
             align-items: center;
-            margin: 16px 0;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            color: #6b7280;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
         
-        .checkbox-container input[type="checkbox"] {
-            margin-right: 8px;
+        .widget-tab.active {
+            background: #f3f4f6;
+            color: #111827;
+            font-weight: 500;
         }
         
-        .sign-in-btn {
-            background: #28a745;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 6px;
+        .widget-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+        
+        .input-group {
+            margin-bottom: 16px;
+            position: relative;
+        }
+        
+        .widget-input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.2s ease;
+            background: #fafafa;
+        }
+        
+        .widget-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .widget-input::placeholder {
+            color: #9ca3af;
+        }
+        
+        .input-with-button {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        
+        .input-with-button .widget-input {
+            flex: 1;
+        }
+        
+        .get-code-btn {
+            background: #f3f4f6;
+            color: #374151;
+            border: 2px solid #e5e7eb;
+            padding: 16px 24px;
+            border-radius: 12px;
             font-weight: 500;
             cursor: pointer;
-            transition: background-color 0.2s ease;
+            transition: all 0.2s ease;
+            white-space: nowrap;
         }
         
-        .sign-in-btn:hover {
-            background: #218838;
+        .get-code-btn:hover {
+            background: #e5e7eb;
+            border-color: #d1d5db;
         }
         
-        .sign-in-btn:disabled {
-            background: #6c757d;
+        .get-code-btn:disabled {
+            opacity: 0.5;
             cursor: not-allowed;
+        }
+        
+        .login-btn {
+            width: 100%;
+            background: #111827;
+            color: white;
+            border: none;
+            padding: 18px 24px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin: 24px 0;
+        }
+        
+        .login-btn:hover {
+            background: #1f2937;
+            transform: translateY(-1px);
+        }
+        
+        .login-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
         }
         
         .widget-footer {
             text-align: center;
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .success-message {
+            text-align: center;
+            padding: 32px;
+        }
+        
+        .success-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+        
+        .error-message {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+            padding: 12px 16px;
+            border-radius: 8px;
             margin-top: 16px;
             font-size: 14px;
-            color: #6c757d;
+            text-align: center;
         }
         
-        .widget-footer a {
-            color: #28a745;
-            text-decoration: none;
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 24px;
         }
         
-        .widget-footer a:hover {
-            text-decoration: underline;
+        .step-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            transition: background 0.2s ease;
+        }
+        
+        .step-dot.active {
+            background: #3b82f6;
         }
     </style>
 </head>
@@ -354,120 +437,109 @@
                 </p>
             </div>
 
-            <div class="max-w-md mx-auto">
-                <div class="social-login-widget">
-                    <div id="login-form">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-4" style="color: #28a745;">
-                            Sign In
-                        </h3>
-                        
-                        <div class="mb-4">
-                            <p class="text-sm text-gray-600 mb-3">Sign in using social network:</p>
-                            <a href="#" class="social-btn social-btn-twitter">
-                                <span class="mr-2">🐦</span> Login with Twitter
-                            </a>
-                            <a href="#" class="social-btn social-btn-facebook">
-                                <span class="mr-2">📘</span> Login with Facebook
-                            </a>
+            <div class="jpegto-widget">
+                <!-- Widget Header with Tabs -->
+                <div class="widget-header">
+                    <div class="widget-tabs">
+                        <div class="widget-tab">
+                            <span>🔄</span>
+                            <span>QR</span>
                         </div>
-
-                        <div class="mb-4">
-                            <p class="text-sm text-gray-600 mb-3">Sign in using your registered account:</p>
-                            <input 
-                                type="email" 
-                                id="email" 
-                                class="form-input"
-                                placeholder="Username"
-                                required
-                            >
-                            <input 
-                                type="password" 
-                                id="password" 
-                                class="form-input"
-                                placeholder="Password"
-                                required
-                            >
+                        <div class="widget-tab">
+                            <span>💬</span>
+                            <span>QQ</span>
                         </div>
-
-                        <div class="checkbox-container">
-                            <input type="checkbox" id="remember" />
-                            <label for="remember" class="text-sm text-gray-600">Keep me signed in</label>
-                        </div>
-
-                        <div class="text-right mb-4">
-                            <button 
-                                onclick="requestCode()" 
-                                id="request-btn"
-                                class="sign-in-btn"
-                            >
-                                Sign In
-                            </button>
-                        </div>
-
-                        <div class="widget-footer">
-                            Don't have an account? <a href="#" onclick="showSignUp()">Sign Up</a><br>
-                            Remind <a href="#" onclick="showPasswordReset()">Password</a>
+                        <div class="widget-tab active">
+                            <span>✉️</span>
+                            <span>Email</span>
                         </div>
                     </div>
+                </div>
 
-                    <div id="verify-form" class="hidden">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-4" style="color: #28a745;">
-                            Check Your Email 📧
-                        </h3>
-                        <p class="text-gray-600 mb-4 text-sm">
-                            We sent a 6-digit code to <span id="sent-email" class="font-semibold"></span>
-                        </p>
-                        
-                        <div class="mb-4">
+                <!-- Step Indicator -->
+                <div class="step-indicator">
+                    <div class="step-dot active" id="step1"></div>
+                    <div class="step-dot" id="step2"></div>
+                    <div class="step-dot" id="step3"></div>
+                </div>
+
+                <!-- Email Input Form -->
+                <div id="email-step">
+                    <h2 class="widget-title">Email Verification Login</h2>
+                    
+                    <div class="input-group">
+                        <input 
+                            type="email" 
+                            id="email" 
+                            class="widget-input"
+                            placeholder="Please enter your email address"
+                            required
+                        >
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-with-button">
                             <input 
                                 type="text" 
                                 id="code" 
-                                class="form-input"
-                                placeholder="Enter verification code"
+                                class="widget-input"
+                                placeholder="Please enter the code"
                                 maxlength="6"
-                                required
+                                disabled
                             >
-                        </div>
-
-                        <div class="text-right mb-4">
                             <button 
-                                onclick="verifyCode()" 
-                                id="verify-btn"
-                                class="sign-in-btn"
+                                onclick="requestCode()" 
+                                id="get-code-btn"
+                                class="get-code-btn"
+                                disabled
                             >
-                                Verify & Login
+                                Get code
                             </button>
-                        </div>
-
-                        <div class="widget-footer">
-                            <a href="#" onclick="resetForm()">← Back to sign in</a>
                         </div>
                     </div>
 
-                    <div id="success-form" class="hidden text-center">
-                        <div class="text-4xl mb-4">🎉</div>
-                        <h3 class="text-xl font-semibold text-green-600 mb-4">
-                            Welcome! You're logged in.
-                        </h3>
-                        <p class="text-gray-600 mb-4 text-sm">
+                    <button 
+                        onclick="verifyCode()" 
+                        id="login-btn"
+                        class="login-btn"
+                        disabled
+                    >
+                        Login
+                    </button>
+
+                    <div class="widget-footer">
+                        No password is required
+                    </div>
+                </div>
+
+                <!-- Success State -->
+                <div id="success-step" class="hidden">
+                    <div class="success-message">
+                        <div class="success-icon">🎉</div>
+                        <h2 class="widget-title">Welcome! You're logged in.</h2>
+                        <p class="text-gray-600 mb-6">
                             That was easy, wasn't it? No passwords, no friction, just smooth authentication.
                         </p>
                         <button 
                             onclick="resetForm()" 
-                            class="sign-in-btn"
+                            class="login-btn"
                         >
                             Try Again
                         </button>
                     </div>
+                </div>
 
-                    <div id="loading" class="hidden text-center py-8">
-                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600 mx-auto mb-4"></div>
-                        <p class="text-gray-600 text-sm">Processing...</p>
+                <!-- Loading State -->
+                <div id="loading-step" class="hidden">
+                    <div class="success-message">
+                        <div class="loading-spinner"></div>
+                        <p class="text-gray-600 mt-4">Processing...</p>
                     </div>
+                </div>
 
-                    <div id="error-message" class="hidden mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
-                        <p class="text-red-700 text-sm text-center"></p>
-                    </div>
+                <!-- Error Message -->
+                <div id="error-message" class="error-message hidden">
+                    <p></p>
                 </div>
             </div>
         </div>
@@ -525,6 +597,7 @@
 
     <script>
         let currentEmail = '';
+        let codeRequested = false;
 
         function scrollToDemo() {
             document.getElementById('demo').scrollIntoView({ 
@@ -532,15 +605,26 @@
             });
         }
 
+        function updateSteps(activeStep) {
+            const steps = ['step1', 'step2', 'step3'];
+            steps.forEach((step, index) => {
+                const element = document.getElementById(step);
+                if (index < activeStep) {
+                    element.classList.add('active');
+                } else {
+                    element.classList.remove('active');
+                }
+            });
+        }
+
         function showLoading() {
-            document.getElementById('loading').classList.remove('hidden');
-            document.getElementById('login-form').classList.add('hidden');
-            document.getElementById('verify-form').classList.add('hidden');
-            document.getElementById('success-form').classList.add('hidden');
+            document.getElementById('email-step').classList.add('hidden');
+            document.getElementById('success-step').classList.add('hidden');
+            document.getElementById('loading-step').classList.remove('hidden');
         }
 
         function hideLoading() {
-            document.getElementById('loading').classList.add('hidden');
+            document.getElementById('loading-step').classList.add('hidden');
         }
 
         function showError(message) {
@@ -552,12 +636,17 @@
             }, 5000);
         }
 
-        function showSignUp() {
-            alert('Sign up functionality would be implemented here');
-        }
-
-        function showPasswordReset() {
-            alert('Password reset functionality would be implemented here');
+        function enableCodeInput() {
+            const codeInput = document.getElementById('code');
+            const getCodeBtn = document.getElementById('get-code-btn');
+            const loginBtn = document.getElementById('login-btn');
+            
+            codeInput.disabled = false;
+            codeInput.focus();
+            getCodeBtn.textContent = 'Resend';
+            loginBtn.disabled = false;
+            codeRequested = true;
+            updateSteps(2);
         }
 
         async function requestCode() {
@@ -581,19 +670,18 @@
 
                 const data = await response.json();
                 hideLoading();
+                document.getElementById('email-step').classList.remove('hidden');
 
                 if (response.ok) {
-                    document.getElementById('sent-email').textContent = email;
-                    document.getElementById('login-form').classList.add('hidden');
-                    document.getElementById('verify-form').classList.remove('hidden');
+                    enableCodeInput();
+                    showError('Verification code sent to your email!');
                 } else {
                     showError(data.error || 'Failed to send code');
-                    document.getElementById('login-form').classList.remove('hidden');
                 }
             } catch (error) {
                 hideLoading();
+                document.getElementById('email-step').classList.remove('hidden');
                 showError('Network error. Please try again.');
-                document.getElementById('login-form').classList.remove('hidden');
             }
         }
 
@@ -601,6 +689,11 @@
             const code = document.getElementById('code').value;
             if (!code) {
                 showError('Please enter the verification code');
+                return;
+            }
+
+            if (!codeRequested) {
+                showError('Please request a code first');
                 return;
             }
 
@@ -623,46 +716,46 @@
 
                 if (response.ok) {
                     localStorage.setItem('authToken', data.token);
-                    
-                    document.getElementById('verify-form').classList.add('hidden');
-                    document.getElementById('success-form').classList.remove('hidden');
+                    document.getElementById('success-step').classList.remove('hidden');
+                    updateSteps(3);
                 } else {
+                    document.getElementById('email-step').classList.remove('hidden');
                     showError(data.error || 'Invalid code');
-                    document.getElementById('verify-form').classList.remove('hidden');
                 }
             } catch (error) {
                 hideLoading();
+                document.getElementById('email-step').classList.remove('hidden');
                 showError('Network error. Please try again.');
-                document.getElementById('verify-form').classList.remove('hidden');
             }
         }
 
         function resetForm() {
             document.getElementById('email').value = '';
-            document.getElementById('password').value = '';
             document.getElementById('code').value = '';
-            currentEmail = '';
+            document.getElementById('code').disabled = true;
+            document.getElementById('get-code-btn').disabled = true;
+            document.getElementById('get-code-btn').textContent = 'Get code';
+            document.getElementById('login-btn').disabled = true;
             
-            document.getElementById('login-form').classList.remove('hidden');
-            document.getElementById('verify-form').classList.add('hidden');
-            document.getElementById('success-form').classList.add('hidden');
+            currentEmail = '';
+            codeRequested = false;
+            
+            document.getElementById('email-step').classList.remove('hidden');
+            document.getElementById('success-step').classList.add('hidden');
+            document.getElementById('loading-step').classList.add('hidden');
             document.getElementById('error-message').classList.add('hidden');
+            
+            updateSteps(1);
         }
 
-        // Auto-focus on code input when it becomes visible
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.target.id === 'verify-form' && !mutation.target.classList.contains('hidden')) {
-                    setTimeout(() => {
-                        document.getElementById('code').focus();
-                    }, 100);
-                }
-            });
-        });
-
-        observer.observe(document.getElementById('verify-form'), {
-            attributes: true,
-            attributeFilter: ['class']
+        // Enable "Get code" button when email is entered
+        document.getElementById('email').addEventListener('input', (e) => {
+            const getCodeBtn = document.getElementById('get-code-btn');
+            if (e.target.value.trim() && e.target.value.includes('@')) {
+                getCodeBtn.disabled = false;
+            } else {
+                getCodeBtn.disabled = true;
+            }
         });
 
         // Auto-submit code when 6 digits are entered
@@ -674,15 +767,15 @@
 
         // Enter key handlers
         document.getElementById('email').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') requestCode();
-        });
-
-        document.getElementById('password').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') requestCode();
+            if (e.key === 'Enter' && !document.getElementById('get-code-btn').disabled) {
+                requestCode();
+            }
         });
 
         document.getElementById('code').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') verifyCode();
+            if (e.key === 'Enter' && !document.getElementById('login-btn').disabled) {
+                verifyCode();
+            }
         });
     </script>
 </body>
