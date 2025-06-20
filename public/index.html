@@ -87,11 +87,12 @@
         
         .demo-widget {
             background: white;
-            border-radius: 16px;
-            padding: 32px;
+            border-radius: 20px;
+            padding: 40px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
+            max-width: 450px;
             width: 100%;
+            border: 1px solid #F3F4F6;
         }
         
         .input-field {
@@ -323,6 +324,141 @@
                 border-color: #FFA500;
             }
         }
+
+        /* Demo Widget Specific Styles */
+        .demo-section {
+            background: #F8FAFC;
+        }
+
+        .demo-widget-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid #E5E7EB;
+            max-width: 420px;
+            width: 100%;
+        }
+
+        .demo-widget-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .demo-widget-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+
+        .demo-widget-subtitle {
+            font-size: 14px;
+            color: #6B7280;
+        }
+
+        .demo-input-group {
+            margin-bottom: 24px;
+        }
+
+        .demo-input-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+
+        .demo-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.2s ease;
+            background: #FAFAFA;
+        }
+
+        .demo-input:focus {
+            outline: none;
+            border-color: #FFA500;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(255, 165, 0, 0.1);
+        }
+
+        .demo-input-row {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .demo-input-code {
+            flex: 1;
+            text-align: center;
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+
+        .demo-get-code-btn {
+            background: #F3F4F6;
+            color: #6B7280;
+            border: 2px solid #E5E7EB;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .demo-get-code-btn:hover {
+            background: #E5E7EB;
+            border-color: #D1D5DB;
+        }
+
+        .demo-login-btn {
+            width: 100%;
+            background: #FFA500;
+            color: white;
+            border: none;
+            padding: 16px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 16px;
+        }
+
+        .demo-login-btn:hover {
+            background: #FF8C00;
+        }
+
+        .demo-footer-text {
+            text-align: center;
+            font-size: 12px;
+            color: #9CA3AF;
+        }
+
+        .demo-step-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .demo-step-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #E5E7EB;
+            transition: all 0.2s ease;
+        }
+
+        .demo-step-dot.active {
+            background: #FFA500;
+        }
     </style>
 </head>
 <body class="bg-gray-50 font-sans">
@@ -473,7 +609,7 @@
     </section>
 
     <!-- Demo Section -->
-    <section id="demo" class="py-20 bg-gray-50">
+    <section id="demo" class="py-20 demo-section">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-black text-gray-900 mb-8">
@@ -507,60 +643,87 @@
                 </div>
                 
                 <!-- Right Column - Demo Widget -->
-                <div class="flex justify-center" id="demo">
-                    <div class="demo-widget">
-                        <div class="text-center mb-8">
-                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Try our live demo!</h3>
-                            <p class="text-gray-600">Enter your email to experience passwordless auth</p>
+                <div class="flex justify-center">
+                    <div class="demo-widget-container">
+                        <div class="demo-widget-header">
+                            <div class="demo-widget-title">Enter your email to experience passwordless auth</div>
+                        </div>
+                        
+                        <div class="demo-step-indicators">
+                            <div class="demo-step-dot active"></div>
+                            <div class="demo-step-dot"></div>
+                            <div class="demo-step-dot"></div>
                         </div>
                         
                         <!-- Demo Form -->
                         <div id="demo-form">
-                            <div class="mb-6">
+                            <div class="demo-input-group">
                                 <input 
                                     type="email" 
                                     id="demo-email" 
                                     placeholder="Enter your email address"
-                                    class="input-field"
+                                    class="demo-input"
                                     required
                                 >
                             </div>
+                            
+                            <div class="demo-input-group">
+                                <div class="demo-input-row">
+                                    <input 
+                                        type="text" 
+                                        id="demo-code" 
+                                        placeholder="Enter verification code"
+                                        class="demo-input demo-input-code"
+                                        maxlength="6"
+                                    >
+                                    <button 
+                                        id="demo-get-code" 
+                                        class="demo-get-code-btn"
+                                    >
+                                        Get Code
+                                    </button>
+                                </div>
+                            </div>
+                            
                             <button 
-                                id="demo-submit" 
-                                class="btn-primary w-full text-lg py-4 mb-4"
+                                id="demo-login" 
+                                class="demo-login-btn"
                             >
-                                Send Magic Link ✨
+                                Login
                             </button>
-                            <p class="text-sm text-gray-500 text-center">
-                                No password required. Check your email for instant access.
-                            </p>
+                            
+                            <div class="demo-footer-text">
+                                No password required • Secure by design
+                            </div>
                         </div>
                         
                         <!-- Success State -->
                         <div id="demo-success" class="hidden">
                             <div class="success-message mb-6">
-                                ✅ Magic link sent! Check your email.
+                                ✅ Code sent! Check your email.
                             </div>
-                            <div class="mb-6">
-                                <input 
-                                    type="text" 
-                                    id="demo-code" 
-                                    placeholder="Enter 6-digit code"
-                                    class="input-field text-center text-2xl tracking-widest"
-                                    maxlength="6"
-                                >
+                            <div class="demo-input-group">
+                                <div class="demo-input-row">
+                                    <input 
+                                        type="text" 
+                                        id="demo-code-verify" 
+                                        placeholder="Enter 6-digit code"
+                                        class="demo-input demo-input-code"
+                                        maxlength="6"
+                                    >
+                                    <button 
+                                        id="demo-resend" 
+                                        class="demo-get-code-btn"
+                                    >
+                                        Resend
+                                    </button>
+                                </div>
                             </div>
                             <button 
                                 id="demo-verify" 
-                                class="btn-primary w-full text-lg py-4 mb-4"
+                                class="demo-login-btn"
                             >
-                                Verify & Sign In 🔐
-                            </button>
-                            <button 
-                                id="demo-resend" 
-                                class="btn-secondary w-full py-3"
-                            >
-                                Resend Code
+                                Verify & Login
                             </button>
                         </div>
                         
@@ -571,7 +734,7 @@
                             </div>
                             <button 
                                 id="demo-retry" 
-                                class="btn-secondary w-full py-3"
+                                class="demo-login-btn"
                             >
                                 Try Again
                             </button>
@@ -584,7 +747,7 @@
                             <p class="text-gray-600 mb-6">You're now signed in. That's how easy passwordless auth can be!</p>
                             <button 
                                 id="demo-reset" 
-                                class="btn-secondary w-full py-3"
+                                class="demo-login-btn"
                             >
                                 Try Again
                             </button>
@@ -933,7 +1096,9 @@
         
         const emailInput = document.getElementById('demo-email');
         const codeInput = document.getElementById('demo-code');
-        const submitBtn = document.getElementById('demo-submit');
+        const codeVerifyInput = document.getElementById('demo-code-verify');
+        const getCodeBtn = document.getElementById('demo-get-code');
+        const loginBtn = document.getElementById('demo-login');
         const verifyBtn = document.getElementById('demo-verify');
         const resendBtn = document.getElementById('demo-resend');
         const retryBtn = document.getElementById('demo-retry');
@@ -942,7 +1107,7 @@
         const errorText = document.getElementById('error-text');
         
         // State management
-        let currentState = 'form'; // form, success, error, complete
+        let currentState = 'form';
         let isLoading = false;
         
         function showState(state) {
@@ -972,7 +1137,7 @@
         
         function setLoading(loading) {
             isLoading = loading;
-            const widget = document.querySelector('.demo-widget');
+            const widget = document.querySelector('.demo-widget-container');
             if (loading) {
                 widget.classList.add('loading');
             } else {
@@ -1031,7 +1196,7 @@
         }
         
         // Event handlers
-        submitBtn.addEventListener('click', async () => {
+        getCodeBtn.addEventListener('click', async () => {
             if (isLoading) return;
             
             const email = emailInput.value.trim();
@@ -1050,7 +1215,35 @@
             try {
                 await requestCode(email);
                 showState('success');
-                codeInput.focus();
+                codeVerifyInput.focus();
+            } catch (error) {
+                showError(error.message);
+            } finally {
+                setLoading(false);
+            }
+        });
+        
+        loginBtn.addEventListener('click', async () => {
+            if (isLoading) return;
+            
+            const email = emailInput.value.trim();
+            const code = codeInput.value.trim();
+            
+            if (!email) {
+                showError('Please enter your email address');
+                return;
+            }
+            
+            if (!code || code.length !== 6) {
+                showError('Please enter the 6-digit code');
+                return;
+            }
+            
+            setLoading(true);
+            
+            try {
+                await verifyCode(email, code);
+                showState('complete');
             } catch (error) {
                 showError(error.message);
             } finally {
@@ -1062,7 +1255,7 @@
             if (isLoading) return;
             
             const email = emailInput.value.trim();
-            const code = codeInput.value.trim();
+            const code = codeVerifyInput.value.trim();
             
             if (!code || code.length !== 6) {
                 showError('Please enter the 6-digit code');
@@ -1089,9 +1282,8 @@
             
             try {
                 await requestCode(email);
-                // Stay on success state but clear code input
-                codeInput.value = '';
-                codeInput.focus();
+                codeVerifyInput.value = '';
+                codeVerifyInput.focus();
             } catch (error) {
                 showError(error.message);
             } finally {
@@ -1107,6 +1299,7 @@
         resetBtn.addEventListener('click', () => {
             emailInput.value = '';
             codeInput.value = '';
+            codeVerifyInput.value = '';
             showState('form');
             emailInput.focus();
         });
@@ -1114,28 +1307,31 @@
         // Enter key handling
         emailInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
-                submitBtn.click();
+                getCodeBtn.click();
             }
         });
         
         codeInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
+                loginBtn.click();
+            }
+        });
+        
+        codeVerifyInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
                 verifyBtn.click();
             }
         });
         
-        // Auto-format code input
-        codeInput.addEventListener('input', (e) => {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 6) {
-                value = value.slice(0, 6);
-            }
-            e.target.value = value;
-            
-            // Auto-verify when 6 digits entered
-            if (value.length === 6) {
-                setTimeout(() => verifyBtn.click(), 100);
-            }
+        // Auto-format code inputs
+        [codeInput, codeVerifyInput].forEach(input => {
+            input.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 6) {
+                    value = value.slice(0, 6);
+                }
+                e.target.value = value;
+            });
         });
         
         // Smooth scrolling for anchor links
