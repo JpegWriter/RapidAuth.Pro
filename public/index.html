@@ -239,6 +239,7 @@
             height: 120px;
             top: 20%;
             left: 10%;
+            animation: float 6s ease-in-out infinite;
         }
 
         .circle-blue {
@@ -247,6 +248,7 @@
             height: 80px;
             top: 15%;
             right: 15%;
+            animation: float 8s ease-in-out infinite reverse;
         }
 
         .circle-green {
@@ -255,6 +257,22 @@
             height: 60px;
             bottom: 30%;
             left: 5%;
+            animation: float 7s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px);
+            }
+            25% {
+                transform: translateY(-20px) translateX(10px);
+            }
+            50% {
+                transform: translateY(-10px) translateX(-15px);
+            }
+            75% {
+                transform: translateY(-25px) translateX(5px);
+            }
         }
 
         .trust-badge {
@@ -280,6 +298,31 @@
         .trust-dot:nth-child(1) { background: #3B82F6; }
         .trust-dot:nth-child(2) { background: #10B981; }
         .trust-dot:nth-child(3) { background: #F59E0B; }
+
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid #FFA500;
+            white-space: nowrap;
+            animation: typing 2s steps(15, end), blink-caret 1s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink-caret {
+            from, to {
+                border-color: transparent;
+            }
+            50% {
+                border-color: #FFA500;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50 font-sans">
@@ -318,7 +361,7 @@
                 
                 <h1 class="text-5xl md:text-6xl font-black text-gray-900 mb-6">
                     Stop Losing Clients at<br>
-                    <span class="text-primary">the Login Page</span>
+                    <span class="text-primary typewriter" id="typewriter-text">the Login Page</span>
                 </h1>
                 
                 <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
@@ -865,6 +908,23 @@
 
     <!-- JavaScript -->
     <script>
+        // Typewriter effect for "the Login Page"
+        function startTypewriter() {
+            const element = document.getElementById('typewriter-text');
+            const text = 'the Login Page';
+            element.textContent = '';
+            element.style.width = '0';
+            
+            // Start typing animation after a delay
+            setTimeout(() => {
+                element.style.animation = 'typing 2s steps(15, end), blink-caret 1s step-end infinite';
+                element.textContent = text;
+            }, 1000);
+        }
+
+        // Start typewriter effect when page loads
+        document.addEventListener('DOMContentLoaded', startTypewriter);
+
         // Demo widget functionality
         const demoForm = document.getElementById('demo-form');
         const demoSuccess = document.getElementById('demo-success');
