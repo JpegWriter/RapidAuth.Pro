@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - RapidAuth.pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/theme.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FFA500',
+                        'primary-dark': '#FF8C00',
+                        secondary: '#6B7280',
+                        accent: '#10B981'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', '-apple-system', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #FFF7ED 0%, #FFFFFF 100%);
+        }
+        
+        .logo-img {
+            height: 40px;
+            width: auto;
+        }
+        
+        .btn-primary {
+            background: #FFA500;
+            color: white;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: #FF8C00;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #374151;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: 2px solid #E5E7EB;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            border-color: #FFA500;
+            transform: translateY(-2px);
+        }
+        
+        .auth-widget {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            max-width: 450px;
+            width: 100%;
+            border: 1px solid #F3F4F6;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #E5E7EB;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #FAFAFA;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: #FFA500;
+            box-shadow: 0 0 0 4px rgba(255, 165, 0, 0.1);
+            background: white;
+        }
+        
+        .success-message {
+            background: #ECFDF5;
+            color: #10B981;
+            padding: 20px 24px;
+            border-radius: 12px;
+            border: 1px solid #10B981;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .error-message {
+            background: #FEF2F2;
+            color: #EF4444;
+            padding: 20px 24px;
+            border-radius: 12px;
+            border: 1px solid #EF4444;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        
+        .decorative-circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.05;
+        }
+        
+        .circle-1 {
+            background: #FFA500;
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            left: 5%;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .circle-2 {
+            background: #10B981;
+            width: 150px;
+            height: 150px;
+            top: 20%;
+            right: 10%;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+        
+        .circle-3 {
+            background: #3B82F6;
+            width: 100px;
+            height: 100px;
+            bottom: 15%;
+            left: 15%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px);
+            }
+            25% {
+                transform: translateY(-30px) translateX(20px);
+            }
+            50% {
+                transform: translateY(-15px) translateX(-25px);
+            }
+            75% {
+                transform: translateY(-35px) translateX(10px);
+            }
+        }
+        
+        .feature-highlight {
+            background: #F8FAFC;
+            border-radius: 16px;
+            padding: 24px;
+            border-left: 4px solid #FFA500;
+            margin: 20px 0;
+        }
+        
+        .security-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #F0FDF4;
+            color: #16A34A;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .back-link {
+            color: #6B7280;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s ease;
+        }
+        
+        .back-link:hover {
+            color: #FFA500;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="/">
+                        <img src="https://i.postimg.cc/Qx8C6tgQ/Chat-GPT-Image-Jun-19-2025-02-30-24-PM.png" alt="RapidAuth.pro" class="logo-img">
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/#demo" class="text-gray-600 hover:text-gray-900">Try Demo</a>
+                    <a href="/#features" class="text-gray-600 hover:text-gray-900">Features</a>
+                    <a href="/public/info.html" class="text-gray-600 hover:text-gray-900">Info</a>
+                    <a href="/#pricing" class="text-gray-600 hover:text-gray-900">Pricing</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="gradient-bg min-h-screen py-20 relative overflow-hidden">
+        <!-- Decorative circles -->
+        <div class="decorative-circle circle-1"></div>
+        <div class="decorative-circle circle-2"></div>
+        <div class="decorative-circle circle-3"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+            <!-- Back Link -->
+            <div class="mb-8">
+                <a href="/" class="back-link">
+                    ← Back to Homepage
+                </a>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Left Column - Information -->
+                <div class="space-y-8">
+                    <div>
+                        <div class="security-badge">
+                            🔒 Enterprise-grade security
+                        </div>
+                        <h1 class="text-4xl md:text-5xl font-black text-gray-900 mb-6">
+                            Welcome to <span class="text-primary">RapidAuth.pro</span>
+                        </h1>
+                        <p class="text-xl text-gray-600 mb-8">
+                            Experience the future of authentication. No passwords, no friction, just seamless access to your account.
+                        </p>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-primary text-white rounded-full p-3 text-xl">⚡</div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">Lightning Fast</h3>
+                                <p class="text-gray-600">Sign in within 10 seconds. No complex passwords to remember or type.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="bg-primary text-white rounded-full p-3 text-xl">🔐</div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">Ultra Secure</h3>
+                                <p class="text-gray-600">Bank-level encryption with email verification. More secure than passwords.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="bg-primary text-white rounded-full p-3 text-xl">📱</div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">Works Everywhere</h3>
+                                <p class="text-gray-600">Access from any device, any browser. Your email is your key.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-highlight">
+                        <h4 class="font-bold text-gray-900 mb-2">🎯 Why Choose Passwordless?</h4>
+                        <ul class="text-gray-600 space-y-1">
+                            <li>• 3x higher conversion rates</li>
+                            <li>• Zero password-related support tickets</li>
+                            <li>• Eliminates 81% of security breaches</li>
+                            <li>• Works on all devices instantly</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Right Column - Auth Widget -->
+                <div class="flex justify-center">
+                    <div class="auth-widget">
+                        <div class="text-center mb-8">
+                            <h2 class="text-2xl font-bold text-gray-900 mb-3">Sign In to Your Account</h2>
+                            <p class="text-gray-600">Enter your email to get started</p>
+                        </div>
+                        
+                        <!-- Auth Form -->
+                        <div id="auth-form">
+                            <div class="mb-6">
+                                <label for="auth-email" class="block text-sm font-semibold text-gray-700 mb-3">
+                                    Email Address
+                                </label>
+                                <input 
+                                    type="email" 
+                                    id="auth-email" 
+                                    placeholder="Enter your email address"
+                                    class="input-field"
+                                    required
+                                >
+                            </div>
+                            <button 
+                                id="auth-submit" 
+                                class="btn-primary w-full text-lg py-4 mb-6"
+                            >
+                                Send Magic Link ✨
+                            </button>
+                            <p class="text-sm text-gray-500 text-center">
+                                No password required. We'll send a secure link to your email.
+                            </p>
+                        </div>
+                        
+                        <!-- Success State -->
+                        <div id="auth-success" class="hidden">
+                            <div class="success-message mb-6">
+                                ✅ Magic link sent! Check your email.
+                            </div>
+                            <div class="mb-6">
+                                <label for="auth-code" class="block text-sm font-semibold text-gray-700 mb-3">
+                                    Enter 6-digit code
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="auth-code" 
+                                    placeholder="000000"
+                                    class="input-field text-center text-2xl tracking-widest"
+                                    maxlength="6"
+                                >
+                            </div>
+                            <button 
+                                id="auth-verify" 
+                                class="btn-primary w-full text-lg py-4 mb-4"
+                            >
+                                Verify & Sign In 🔐
+                            </button>
+                            <button 
+                                id="auth-resend" 
+                                class="btn-secondary w-full py-3"
+                            >
+                                Resend Code
+                            </button>
+                        </div>
+                        
+                        <!-- Error State -->
+                        <div id="auth-error" class="hidden">
+                            <div class="error-message mb-6">
+                                <span id="auth-error-text">Something went wrong. Please try again.</span>
+                            </div>
+                            <button 
+                                id="auth-retry" 
+                                class="btn-secondary w-full py-3"
+                            >
+                                Try Again
+                            </button>
+                        </div>
+                        
+                        <!-- Success Complete -->
+                        <div id="auth-complete" class="hidden text-center">
+                            <div class="text-6xl mb-6">🎉</div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Welcome Back!</h3>
+                            <p class="text-gray-600 mb-8">You're now signed in to your RapidAuth.pro account.</p>
+                            <div class="space-y-3">
+                                <button class="btn-primary w-full py-4">
+                                    Go to Dashboard
+                                </button>
+                                <button 
+                                    id="auth-reset" 
+                                    class="btn-secondary w-full py-3"
+                                >
+                                    Try Another Email
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+        // Auth widget functionality
+        const authForm = document.getElementById('auth-form');
+        const authSuccess = document.getElementById('auth-success');
+        const authError = document.getElementById('auth-error');
+        const authComplete = document.getElementById('auth-complete');
+        
+        const emailInput = document.getElementById('auth-email');
+        const codeInput = document.getElementById('auth-code');
+        const submitBtn = document.getElementById('auth-submit');
+        const verifyBtn = document.getElementById('auth-verify');
+        const resendBtn = document.getElementById('auth-resend');
+        const retryBtn = document.getElementById('auth-retry');
+        const resetBtn = document.getElementById('auth-reset');
+        
+        const errorText = document.getElementById('auth-error-text');
+        
+        // State management
+        let currentState = 'form';
+        let isLoading = false;
+        
+        function showState(state) {
+            // Hide all states
+            authForm.classList.add('hidden');
+            authSuccess.classList.add('hidden');
+            authError.classList.add('hidden');
+            authComplete.classList.add('hidden');
+            
+            // Show current state
+            switch(state) {
+                case 'form':
+                    authForm.classList.remove('hidden');
+                    break;
+                case 'success':
+                    authSuccess.classList.remove('hidden');
+                    break;
+                case 'error':
+                    authError.classList.remove('hidden');
+                    break;
+                case 'complete':
+                    authComplete.classList.remove('hidden');
+                    break;
+            }
+            currentState = state;
+        }
+        
+        function setLoading(loading) {
+            isLoading = loading;
+            const widget = document.querySelector('.auth-widget');
+            if (loading) {
+                widget.classList.add('loading');
+            } else {
+                widget.classList.remove('loading');
+            }
+        }
+        
+        function showError(message) {
+            errorText.textContent = message;
+            showState('error');
+        }
+        
+        // API calls
+        async function requestCode(email) {
+            try {
+                const response = await fetch('/auth/request-code', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email })
+                });
+                
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to send code');
+                }
+                
+                return data;
+            } catch (error) {
+                throw error;
+            }
+        }
+        
+        async function verifyCode(email, code) {
+            try {
+                const response = await fetch('/auth/verify-code', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, code })
+                });
+                
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(data.error || 'Invalid code');
+                }
+                
+                return data;
+            } catch (error) {
+                throw error;
+            }
+        }
+        
+        // Event handlers
+        submitBtn.addEventListener('click', async () => {
+            if (isLoading) return;
+            
+            const email = emailInput.value.trim();
+            if (!email) {
+                showError('Please enter your email address');
+                return;
+            }
+            
+            if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+                showError('Please enter a valid email address');
+                return;
+            }
+            
+            setLoading(true);
+            
+            try {
+                await requestCode(email);
+                showState('success');
+                codeInput.focus();
+            } catch (error) {
+                showError(error.message);
+            } finally {
+                setLoading(false);
+            }
+        });
+        
+        verifyBtn.addEventListener('click', async () => {
+            if (isLoading) return;
+            
+            const email = emailInput.value.trim();
+            const code = codeInput.value.trim();
+            
+            if (!code || code.length !== 6) {
+                showError('Please enter the 6-digit code');
+                return;
+            }
+            
+            setLoading(true);
+            
+            try {
+                await verifyCode(email, code);
+                showState('complete');
+            } catch (error) {
+                showError(error.message);
+            } finally {
+                setLoading(false);
+            }
+        });
+        
+        resendBtn.addEventListener('click', async () => {
+            if (isLoading) return;
+            
+            const email = emailInput.value.trim();
+            setLoading(true);
+            
+            try {
+                await requestCode(email);
+                codeInput.value = '';
+                codeInput.focus();
+            } catch (error) {
+                showError(error.message);
+            } finally {
+                setLoading(false);
+            }
+        });
+        
+        retryBtn.addEventListener('click', () => {
+            showState('form');
+            emailInput.focus();
+        });
+        
+        resetBtn.addEventListener('click', () => {
+            emailInput.value = '';
+            codeInput.value = '';
+            showState('form');
+            emailInput.focus();
+        });
+        
+        // Enter key handling
+        emailInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                submitBtn.click();
+            }
+        });
+        
+        codeInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                verifyBtn.click();
+            }
+        });
+        
+        // Auto-format code input
+        codeInput.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 6) {
+                value = value.slice(0, 6);
+            }
+            e.target.value = value;
+            
+            // Auto-verify when 6 digits entered
+            if (value.length === 6) {
+                setTimeout(() => verifyBtn.click(), 100);
+            }
+        });
+        
+        // Initialize
+        emailInput.focus();
+    </script>
+</body>
+</html>
